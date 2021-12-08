@@ -36,3 +36,11 @@ Route::post(
 
 
 Route::resource('fileUploads', App\Http\Controllers\FileUploadController::class);
+
+
+
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::resource('states', App\Http\Controllers\Admin\Admin\stateController::class, ["as" => 'admin']);
+});
