@@ -5,9 +5,10 @@
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
-    <!-- Font Awesome -->
+    <!-- Font Awesome
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-
+    -->
+    <script src="https://kit.fontawesome.com/0d32d1372b.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 
     <!-- AdminLTE -->
@@ -106,7 +107,7 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 0.0.1
             </div>
-            <strong>Copyright &copy; 2021 <a href="https://fastx.asia">FastX.asia</a>.</strong> All rights
+            <strong>RB Emborrachados Copyright &copy; 2021 <a href="#">Fabio de Oliveira</a>.</strong> All rights
             reserved.
         </footer>
     </div>

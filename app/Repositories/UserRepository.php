@@ -28,7 +28,7 @@ class UserRepository extends BaseRepository
      */
     public function getFieldsSearchable()
     {
-        return $this->fieldSearchable;
+        //return $this->fieldSearchable;
     }
 
     /**

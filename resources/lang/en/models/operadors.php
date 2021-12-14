@@ -1,13 +1,12 @@
 <?php
 
 return array (
-  'singular' => 'state',
-  'plural' => 'states',
+  'singular' => 'operador',
+  'plural' => 'operadors',
   'fields' => 
   array (
     'id' => 'Id',
-    'name' => 'Name',
-    'uf' => 'Uf',
+    'nome' => 'Nome',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
   ),

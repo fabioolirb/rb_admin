@@ -19,10 +19,3 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-
-
-
-
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('states', App\Http\Controllers\API\Admin\Admin\stateAPIController::class);
-});

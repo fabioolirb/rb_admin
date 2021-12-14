@@ -38,9 +38,21 @@ Route::post(
 Route::resource('fileUploads', App\Http\Controllers\FileUploadController::class);
 
 
+Route::resource('estados', App\Http\Controllers\EstadosController::class);
 
 
+Route::resource('cidades', App\Http\Controllers\CidadeController::class);
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::resource('states', App\Http\Controllers\Admin\Admin\stateController::class, ["as" => 'admin']);
-});
+
+Route::resource('cors', App\Http\Controllers\corController::class);
+
+Route::resource('operadors', App\Http\Controllers\operadorController::class);
+
+Route::resource('maquinas', App\Http\Controllers\maquinaController::class);
+
+Route::resource('turnos', App\Http\Controllers\turnoController::class);
+
+Route::resource('categorias', App\Http\Controllers\categoriaController::class);
+
+
+Route::resource('produtos', App\Http\Controllers\produtoController::class);

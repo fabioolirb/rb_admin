@@ -2,12 +2,13 @@
 
 namespace App\DataTables;
 
-use App\Models\cidade;
+use App\Models\Cidade;
+use App\Models\Estados;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Column;
 
-class cidadeDataTable extends DataTable
+class CidadeDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -25,12 +26,13 @@ class cidadeDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\cidade $model
+     * @param \App\Models\Cidade $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(cidade $model)
     {
-        return $model->newQuery();
+        //$cidade->estado()->toSql()
+        return $model->newQuery()->with('estado');
     }
 
     /**
@@ -75,9 +77,7 @@ class cidadeDataTable extends DataTable
                        'text' => '<i class="fa fa-refresh"></i> ' .__('auth.app.reload').''
                     ],
                 ],
-                 'language' => [
-                   'url' => url('//cdn.datatables.net/plug-ins/1.10.12/i18n/English.json'),
-                 ],
+                'language' => __('datatables'),
             ]);
     }
 
@@ -89,8 +89,10 @@ class cidadeDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' => new Column(['title' => __('models/cidades.fields.id'), 'data' => 'id','searchable' => false]),
-            'nome' => new Column(['title' => __('models/cidades.fields.nome'), 'data' => 'nome','searchable' => false])
+            'nome' => new Column(['title' => __('models/cidades.fields.nome'), 'data' => 'nome']),
+            'ibge' => new Column(['title' => __('models/cidades.fields.ibge'), 'data' => 'ibge']),
+            'estado_id' => new Column(['title' => __('models/cidades.fields.estado_id'), 'data' => 'estado_id']),
+            'estado' => new Column(['title' => __('models/Estados.fields.uf'), 'data' => 'estado.uf'])
         ];
     }
 

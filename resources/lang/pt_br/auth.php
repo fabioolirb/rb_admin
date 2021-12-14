@@ -75,5 +75,12 @@ return [
             'login' => 'Login',
             'register' => 'Registrar uma nova associação'
         ]
+    ],
+    'app'=> [
+        'create' =>'Novo',
+        'export' => 'Exportar',
+        'print'  => 'Imprimir',
+        'reset'  => 'Resetar',
+        'reload' => 'Atulizar'
     ]
 ];
