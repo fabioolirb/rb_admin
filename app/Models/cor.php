@@ -50,5 +50,9 @@ class cor extends Model
 
     ];
 
-
+    public function imagem_produto()
+    {
+        return $this->belongsToMany(\App\Models\imagem_produto::class,'imagem_cors','cor_id','imagem_id');
+        return $this->belongsToMany(cor::class,'imagem_cors','imagem_id');
+    }
 }

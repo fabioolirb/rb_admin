@@ -190,3 +190,11 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
         </ul>
     </li>
 @endcan
+
+<li class="nav-item">
+    <a href="{{ route('imagemProdutos.index') }}"
+       class="nav-link {{ Request::is('imagemProdutos*') ? 'active' : '' }}">
+        <p>@lang('models/imagemProdutos.plural')</p>
+    </a>
+</li>
+

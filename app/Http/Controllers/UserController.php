@@ -59,10 +59,11 @@ class UserController extends AppBaseController
     {
         $input = $request->all();
         $input['password'] = Hash::make($request->password);
-        
+
         $user = $this->userRepository->create($input);
 
         $role_data = $request->get('role_data');
+
         $user->syncRoles($role_data);
         Flash::success('User saved successfully.');
 
