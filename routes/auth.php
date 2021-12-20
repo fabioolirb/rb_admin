@@ -56,3 +56,7 @@ Route::resource('categorias', App\Http\Controllers\categoriaController::class);
 
 
 Route::resource('produtos', App\Http\Controllers\produtoController::class);
+
+
+
+Route::resource('imagemProdutos', App\Http\Controllers\imagem_produtoController::class);
