@@ -44,27 +44,27 @@ hold-transition login-page
 
                 <div class="row">
                     <div class="col">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">@lang('auth.login.field.remember')</label>
-                        </div>
+                            <button type="submit" class="btn btn-primary btn-block">@lang('auth.login.button.submit')</button>
                     </div>
+                </div>
 
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary btn-block">@lang('auth.login.button.submit')</button>
+                <div class="row">
+                    <div class="justify-content-md-center">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">@lang('auth.login.field.remember')</label>
                     </div>
-
                 </div>
             </form>
-
-            <p class="mb-1">
-                <a href="{{ route('password.request') }}">@lang('auth.login.button.reset-password')</a>
-            </p>
-            <p class="mb-1">
-                <a href="{{ route('register') }}" class="text-center">@lang('auth.login.button.register')</a>
-            </p>
-
-
+            <div class="container">
+                <div class="row" >
+                    <div class="col" >
+                        <a href="{{ route('password.request') }}">@lang('auth.login.button.reset-password')</a>
+                    </div>
+                    <div class="col" >
+                        <a href="{{ route('register') }}" class="text-center">@lang('auth.login.button.register')</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- /.login-card-body -->
     </div>

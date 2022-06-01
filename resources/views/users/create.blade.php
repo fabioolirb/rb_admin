@@ -14,7 +14,12 @@
     <div class="content px-3">
 
         @include('adminlte-templates::common.errors')
-
+        <div class="alert alert-warning alert-dismissible fade " role="alert">
+            <strong>Oloco, meu!</strong> Olha esse alerta animado, como é chique!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <div class="card">
 
             {!! Form::open(['route' => 'users.store']) !!}

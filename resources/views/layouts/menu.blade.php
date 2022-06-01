@@ -99,6 +99,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
 -->
 @canany(['estado.index','cidade.index','cor.index'])
     @php
+
         $isEstadoActive = Request::is($urlAdmin.'*estado*');
         $isCidadeActive = Request::is($urlAdmin.'*cidade*');
         $isCorActive = Request::is($urlAdmin.'*cor*');
@@ -108,11 +109,56 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
         $isProdutoActive =  Request::is($urlAdmin.'*produto*');
         $isOperadorActive =  Request::is($urlAdmin.'*operador*');
         $isImagemProdutosActive =  Request::is($urlAdmin.'*imagemProdutos*');
-      //  $isOperadorActive =  Request::is($urlAdmin.'*cor*');
+        $isStatusOrdemsActive = Request::is($urlAdmin.'*statusOrdem*');
+        $isStatusMontadoraActive= Request::is($urlAdmin.'*statusMontadoras*');
+        $isStatusMontagemActive= Request::is($urlAdmin.'*statusMontagems*');
+        $isOredems = Request::is($urlAdmin.'*ordems*');
+        $isProducaes = Request::is($urlAdmin.'*producaos*');
+        $isMontadore =  Request::is($urlAdmin.'*montadoras*');
+        $isEstoque = Request::is($urlAdmin.'*estoques*');
+        $isMontagemsActive = Request::is($urlAdmin.'*montagems*');
+
+        //  $isOperadorActive =  Request::is($urlAdmin.'*cor*');
       //  $isOperadorActive =  Request::is($urlAdmin.'*cor*');
 
     @endphp
-    <li class="nav-item {{($isEstadoActive||$isCidadeActive||$isCorActive||$isMaquinaActive||$isTurnoActive||$isCategoriaActive||$isProdutoActive||$isOperadorActive||$isImagemProdutosActive)?'menu-open':''}} ">
+
+    <li class="nav-item {{($isOredems||$isProducaes||$isEstoque)?'menu-open':''}} ">
+        <a href="#" class="nav-link">
+            <i class="fa fa-ethernet nav-icon"></i>
+            <p>
+                CRM
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('ordems.index') }}"
+                   class="nav-link {{ $isOredems ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/ordems.plural')</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('producaos.index') }}"
+                   class="nav-link {{  Request::is('*producaos*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/producaos.plural')</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('estoques.index') }}"
+                   class="nav-link {{ Request::is('*estoques*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/estoques.plural')</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-item {{($isStatusOrdemsActive|| $isEstadoActive||$isCidadeActive||$isCorActive||$isMaquinaActive||$isTurnoActive||$isOperadorActive)?'menu-open':''}} ">
         <a href="#" class="nav-link">
             <i class="fa fa-gears nav-icon"></i>
             <p>
@@ -121,7 +167,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
             </p>
         </a>
         <ul class="nav nav-treeview">
-            <li class="nav-item {{($isEstadoActive||$isCidadeActive||$isCorActive||$isMaquinaActive||$isTurnoActive||$isOperadorActive)?'menu-open':''}} ">
+            <li class="nav-item {{($isStatusOrdemsActive||$isStatusMontagemActive||$isEstadoActive||$isCidadeActive||$isCorActive||$isMaquinaActive||$isTurnoActive||$isOperadorActive)?'menu-open':''}} ">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-edit"></i>
                     <p>
@@ -132,7 +178,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{ route('estados.index') }}"
-                           class="nav-link {{ Request::is('estados*') ? 'active' : '' }}">
+                           class="nav-link {{ Request::is('*estados*') ? 'active' : '' }}">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>@lang('models/estados.plural')</p>
                         </a>
@@ -140,7 +186,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
 
                     <li class="nav-item">
                         <a href="{{ route('cidades.index') }}"
-                           class="nav-link {{ Request::is('cidades*') ? 'active' : '' }}">
+                           class="nav-link {{ Request::is('*cidades*') ? 'active' : '' }}">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>@lang('models/cidades.plural')</p>
                         </a>
@@ -148,7 +194,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
 
                     <li class="nav-item">
                         <a href="{{ route('cors.index') }}"
-                           class="nav-link {{ Request::is('cors*') ? 'active' : '' }}">
+                           class="nav-link {{ Request::is('*cors*') ? 'active' : '' }}">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>@lang('models/cors.plural')</p>
                         </a>
@@ -156,7 +202,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
 
                     <li class="nav-item">
                         <a href="{{ route('operadors.index') }}"
-                           class="nav-link {{ Request::is('operadors*') ? 'active' : '' }}">
+                           class="nav-link {{ Request::is('*operadors*') ? 'active' : '' }}">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>@lang('models/operadors.plural')</p>
                         </a>
@@ -164,7 +210,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
 
                     <li class="nav-item">
                         <a href="{{ route('maquinas.index') }}"
-                           class="nav-link {{ Request::is('maquinas*') ? 'active' : '' }}">
+                           class="nav-link {{ Request::is('*maquinas*') ? 'active' : '' }}">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>@lang('models/maquinas.plural')</p>
                         </a>
@@ -172,50 +218,101 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
 
                     <li class="nav-item">
                         <a href="{{ route('turnos.index') }}"
-                           class="nav-link {{ Request::is('turnos*') ? 'active' : '' }}">
+                           class="nav-link {{ Request::is('*turnos*') ? 'active' : '' }}">
                             <i class="far fa-dot-circle nav-icon"></i>
                             <p>@lang('models/turnos.plural')</p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('statusOrdems.index') }}"
+                           class="nav-link {{ Request::is('*statusOrdems*') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>@lang('models/statusOrdems.plural')</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <li class="nav-item {{($isProdutoActive||$isCategoriaActive||$isImagemProdutosActive)?'menu-open':''}} ">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-box"></i>
-                    <p>
-                         Produtos
-                        <i class="fas fa-angle-left right"></i>
-                    </p>
+
+        </ul>
+    <li class="nav-item {{($isProdutoActive||$isCategoriaActive||$isImagemProdutosActive)?'menu-open':''}} ">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-box"></i>
+            <p>
+                Produtos
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('categorias.index') }}"
+                   class="nav-link {{ Request::is('*categorias*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/categorias.plural')</p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{ route('categorias.index') }}"
-                           class="nav-link {{ Request::is('categorias*') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle nav-icon"></i>
-                            <p>@lang('models/categorias.plural')</p>
-                        </a>
-                    </li>
+            </li>
 
+            <li class="nav-item">
+                <a href="{{ route('produtos.index') }}"
+                   class="nav-link {{ Request::is('*produtos*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/produtos.plural')</p>
+                </a>
+            </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('produtos.index') }}"
-                           class="nav-link {{ Request::is('produtos*') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle nav-icon"></i>
-                            <p>@lang('models/produtos.plural')</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('imagemProdutos.index') }}"
-                           class="nav-link {{ Request::is('imagemProdutos*') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle nav-icon"></i>
-                            <p>@lang('models/imagemProdutos.plural')</p>
-                        </a>
-                    </li>
-                </ul>
+            <li class="nav-item">
+                <a href="{{ route('imagemProdutos.index') }}"
+                   class="nav-link {{ Request::is('*imagemProdutos*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/imagemProdutos.plural')</p>
+                </a>
             </li>
         </ul>
     </li>
+    </li>
+
+    <li class="nav-item {{($isStatusMontagemActive|| $isStatusMontadoraActive||$isMontagemsActive||$isStatusMontadoraActive||$isMontadore)?'menu-open':''}} ">
+        <a href="#" class="nav-link">
+            <i class="fa fa-cubes nav-icon"></i>
+            <p>
+                Montagem
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+                <a href="{{ route('montagems.index') }}"
+                   class="nav-link {{ Request::is('*montagems*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/montagems.plural')</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('montadoras.index') }}"
+                   class="nav-link {{ Request::is('*montadoras*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/montadoras.plural')</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('statusMontadoras.index') }}"
+                   class="nav-link {{ Request::is('*statusMontadoras*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/statusMontadoras.plural')</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('statusMontagems.index') }}"
+                   class="nav-link {{ Request::is('*statusMontagems*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/statusMontagems.plural')</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+
 @endcan
 
 

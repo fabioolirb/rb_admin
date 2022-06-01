@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => (bool)env('APP_DEBUG', true),
+    'debug' => (bool) env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://192.168.1.3'),
+    'url' => env('APP_URL', 'http://192.168.1.27'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -68,6 +68,8 @@ return [
     */
 
     'timezone' => 'America/Sao_Paulo',
+    'date_format' => 'd/m/Y',
+    'date_format_js' => 'dd/mm/yy',
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +181,7 @@ return [
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Brian2694\Toastr\ToastrServiceProvider::class,
 
     ],
 
@@ -235,6 +238,8 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Flash' => Laracasts\Flash\Flash::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Toastr' => Brian2694\Toastr\Facades\Toastr::class,
+        'Helper' => App\Helpers\Helper::class
     ],
 
 ];
