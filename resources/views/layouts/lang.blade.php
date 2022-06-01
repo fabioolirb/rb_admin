@@ -1,3 +1,4 @@
+<!--
 <div>
     @foreach (Config::get('languages') as $lang => $language)
     @if ($lang != App::getLocale())
@@ -7,3 +8,4 @@
     @endif
     @endforeach
 </div>
+--!>

@@ -36,9 +36,24 @@ class cor extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
+        'ordem_id' => 'integer',
+        'maquina_id' => 'integer',
+        'data_ini' => 'date',
+        'data_end' => 'date',
+        'producao_id' => 'integer',
+        'data' => 'date',
+        'imagem_id' => 'integer',
+        'turno_id' =>  'integer',
+        'operador_id'=> 'integer',
+        'qtd_diario' => 'integer',
+        'turnos_nome' => 'integer',
+        'nome' => 'string',
+        'imagem_produtos_nome' => 'integer',
+        'link' => 'string',
+        'produto_id' => 'integer',
+        'cor_id' => 'integer',
         'cor' => 'string',
-        'referencia' => 'string',
+        'referencia' => 'string'
     ];
 
     /**
@@ -53,6 +68,14 @@ class cor extends Model
     public function imagem_produto()
     {
         return $this->belongsToMany(\App\Models\imagem_produto::class,'imagem_cors','cor_id','imagem_id');
-        return $this->belongsToMany(cor::class,'imagem_cors','imagem_id');
+
     }
+
+    public function ordem_cors()
+    {
+        return $this->belongsToMany(\App\Models\cor::class,'order_cors','cor_id','id');
+
+    }
+
+
 }

@@ -19,12 +19,12 @@
 <!-- Created At Field -->
 <div class="col-sm-12">
     {!! Form::label('created_at', __('models/estados.fields.created_at').':') !!}
-    <p>{{ $estados->created_at }}</p>
+    <p>{{ $estados->created_at->format('d/m/Y') }}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="col-sm-12">
     {!! Form::label('updated_at', __('models/estados.fields.updated_at').':') !!}
-    <p>{{ $estados->updated_at }}</p>
+    <p>{{ $estados->updated_at->format('d/m/Y') }}</p>
 </div>
 

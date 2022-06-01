@@ -33,6 +33,14 @@
             content: '(*)';
             color: red;
             padding-left: 5px;
+
+        }
+        p {
+            display: inline-block !important;
+        }
+        label {
+            margin-bottom: .5rem;
+            line-height: 1.8;
         }
     </style>
     @stack('page_css')

@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 
 /**
@@ -19,7 +22,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class produto extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,LogsActivity;
 
 
     public $table = 'produtos';
@@ -35,6 +38,14 @@ class produto extends Model
         'prazo_producao',
         'categoria_id'
     ];
+
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly($this->fillable);
+        // Chain fluent methods for configuration options
+    }
 
     /**
      * The attributes that should be casted to native types.
@@ -65,4 +76,16 @@ class produto extends Model
     {
         return $this->hasOne(\App\Models\categoria::class, 'id', 'categoria_id');
     }
+
+
+    public function vw_produtos($produto_id){
+
+       // return $produtos = (array) DB::select('select * from vw_produtos where produto_id = ?',['produto_id'=>$produto_id]);
+
+        $produtos = DB::table('vw_produtos')
+                               ->where('produto_id','=',$produto_id)->get()->toArray();
+
+        return  $produtos;
+    }
+
 }

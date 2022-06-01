@@ -19,12 +19,12 @@
 <!-- Created At Field -->
 <div class="col-sm-12">
     {!! Form::label('created_at', __('models/fileUploads.fields.created_at').':') !!}
-    <p>{{ $fileUpload->created_at }}</p>
+    <p>{{ $fileUpload->created_at->format('d/m/Y') }}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="col-sm-12">
     {!! Form::label('updated_at', __('models/fileUploads.fields.updated_at').':') !!}
-    <p>{{ $fileUpload->updated_at }}</p>
+    <p>{{ $fileUpload->updated_at->format('d/m/Y') }}</p>
 </div>
 

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 
 
@@ -14,17 +16,25 @@ use Eloquent as Model;
  * @property string $nome
  */
 class turno extends Model
-{
 
+{
+    use LogsActivity;
 
     public $table = 'turnos';
-    
+
 
 
 
     public $fillable = [
         'nome'
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly($this->fillable);
+        // Chain fluent methods for configuration options
+    }
 
     /**
      * The attributes that should be casted to native types.
@@ -42,8 +52,8 @@ class turno extends Model
      * @var array
      */
     public static $rules = [
-        
+
     ];
 
-    
+
 }

@@ -26,3 +26,12 @@ Route::get('/checkOnline', function (App\Repositories\AttendanceRepository $atte
     if (Auth::check()) { }
     return $attendanceRepo->CountUserOnline();
 })->name('checkOnline');
+
+
+//Route::get('admin/producoaos/create', 'producaoController@crete')->name('validacor');
+
+Route::post('/admin/producaos/validacor', [App\Http\Controllers\producaoController::class , 'validaCor'])->name('producaos.validacor');
+
+Route::post('/admin/estoques/getproduct', [App\Http\Controllers\estoqueController::class , 'getproduct'])->name('estoque.getproduct');
+
+Route::get('/admin/producaos/teste', [App\Http\Controllers\producaoController::class , 'teste'])->name('producaos.teste');
