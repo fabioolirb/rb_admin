@@ -59,7 +59,7 @@
 <div class="container card-header">
     <div class="row">
         <div class="col-sm"><b>Total de itens : </b> {{$montagem->itens_Qtd}}</div>
-        <div class="col-sm"><b>Total de peça </b> {{$montagem->itens_total}}</div>
+        <div class="col-sm"><b>Total de peça' </b> {{$montagem->itens_total}}</div>
         <div class="col-sm">_________</div>
         <div class="col-sm">_________</div>
     </div>
