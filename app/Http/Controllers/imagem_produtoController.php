@@ -19,16 +19,19 @@ class imagem_produtoController extends AppBaseController
 {
     /** @var  imagem_produtoRepository */
     private $imagemProdutoRepository;
+    /** @var  imagem_produto */
+    private $imagemProduto;
     /** @var  corRepository */
     private $corRepository;
     /** @var  produtoRepository */
     private $produtosRepository;
 
-    public function __construct(imagem_produtoRepository $imagemProdutoRepo, corRepository $corRepo,produtoRepository $produtoRepo )
+    public function __construct(imagem_produto $imagemProduto, imagem_produtoRepository $imagemProdutoRepo, corRepository $corRepo,produtoRepository $produtoRepo )
     {
         $this->imagemProdutoRepository = $imagemProdutoRepo;
         $this->corRepository = $corRepo;
         $this->produtoRepository = $produtoRepo;
+        $this->imagemProduto = $imagemProduto;
     }
 
     /**
@@ -69,7 +72,19 @@ class imagem_produtoController extends AppBaseController
     {
         $input = $request->all();
 
-        $imagemProduto = $this->imagemProdutoRepository->create($input);
+        if ($request->hasFile('link')) {
+            $file_upload = $request->file('link');
+            $name = time() . '_' . $file_upload->getClientOriginalName();
+            $filePath = $file_upload->storeAs('imagem_produto', $name, 'public');
+            $input['link'] = $filePath;
+        }
+
+        $imagemProduto = $this->imagemProduto->create($input);
+        $imagemProduto->save();
+        $cor_data = $request->get('cor_data');
+
+        //
+        $imagemProduto->cor()->attach($cor_data);
 
         Flash::success(__('messages.saved', ['model' => __('models/imagemProdutos.singular')]));
 

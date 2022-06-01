@@ -35,6 +35,7 @@ Route::post(
 )->name('generator_builder.from_file');
 
 
+
 Route::resource('fileUploads', App\Http\Controllers\FileUploadController::class);
 
 
@@ -54,9 +55,31 @@ Route::resource('turnos', App\Http\Controllers\turnoController::class);
 
 Route::resource('categorias', App\Http\Controllers\categoriaController::class);
 
-
 Route::resource('produtos', App\Http\Controllers\produtoController::class);
 
-
-
 Route::resource('imagemProdutos', App\Http\Controllers\imagem_produtoController::class);
+
+Route::resource('ordems', App\Http\Controllers\ordemController::class);
+
+
+Route::resource('producaos', App\Http\Controllers\producaoController::class);
+
+
+Route::resource('estoques', App\Http\Controllers\estoqueController::class);
+
+
+Route::resource('montadoras', App\Http\Controllers\montadoraController::class);
+
+
+Route::resource('statusOrdems', App\Http\Controllers\status_ordemController::class);
+
+
+Route::resource('statusMontadoras', App\Http\Controllers\status_montadoraController::class);
+
+
+Route::resource('statusMontagems', App\Http\Controllers\status_montagemController::class);
+
+
+
+
+Route::resource('montagems', App\Http\Controllers\montagemController::class);

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Spatie\Permission\Models\Permission as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 /**
  * Class Permission
@@ -18,7 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Permission extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,LogsActivity;
 
 
     public $table = 'permissions';
@@ -35,6 +37,13 @@ class Permission extends Model
         'description',
         'module'
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly($this->fillable);
+        // Chain fluent methods for configuration options
+    }
 
     /**
      * The attributes that should be casted to native types.

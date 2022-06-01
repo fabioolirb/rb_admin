@@ -24,7 +24,7 @@ return [
         ],
         'button' => [
             'submit' => 'Entrar',
-            'reset-password' => 'Esqueci a minha senha',
+            'reset-password' => 'Recuperar senha',
             'register' => 'Efetuar Cadastro'
         ]
     ],

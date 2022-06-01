@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Spatie\Permission\Models\Role as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 
 /**
@@ -18,7 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Role extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,LogsActivity;
     public const SUPPER_ADMIN = "supper-admin";
     public const GUEST = "guest";
 
@@ -35,6 +37,15 @@ class Role extends Model
         'guard_name',
         'description'
     ];
+
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly($this->fillable);
+        // Chain fluent methods for configuration options
+    }
+
 
     /**
      * The attributes that should be casted to native types.

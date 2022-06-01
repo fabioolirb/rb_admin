@@ -12,6 +12,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Traits\HasPermissions;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 /**
  * Class User
@@ -23,7 +25,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class User extends Authenticatable
 {
-    use SoftDeletes, HasRoles, HasPermissions, HasFactory, Notifiable;
+    use SoftDeletes, HasRoles, HasPermissions, HasFactory, Notifiable ,LogsActivity ;
 
 
     public $table = 'users';
@@ -39,6 +41,13 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly($this->fillable);
+        // Chain fluent methods for configuration options
+    }
 
     /**
      * Validation rules
@@ -66,7 +75,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime:d/m/Y',
     ];
     public function isSuperAdmin()
     {

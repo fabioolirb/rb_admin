@@ -13,12 +13,12 @@
 <!-- Created At Field -->
 <div class="col-sm-12">
     {!! Form::label('created_at', __('models/categorias.fields.created_at').':') !!}
-    <p>{{ $categoria->created_at }}</p>
+    <p>{{ $categoria->created_at->format('d/m/Y') }}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="col-sm-12">
     {!! Form::label('updated_at', __('models/categorias.fields.updated_at').':') !!}
-    <p>{{ $categoria->updated_at }}</p>
+    <p>{{ $categoria->updated_at->format('d/m/Y') }}</p>
 </div>
 

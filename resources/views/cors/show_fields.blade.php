@@ -13,12 +13,12 @@
 <!-- Created At Field -->
 <div class="col-sm-12">
     {!! Form::label('created_at', __('models/cors.fields.created_at').':') !!}
-    <p>{{ $cor->created_at }}</p>
+    <p>{{ $cor->created_at->format('d/m/Y') }}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="col-sm-12">
     {!! Form::label('updated_at', __('models/cors.fields.updated_at').':') !!}
-    <p>{{ $cor->updated_at }}</p>
+    <p>{{ $cor->updated_at->format('d/m/Y') }}</p>
 </div>
 

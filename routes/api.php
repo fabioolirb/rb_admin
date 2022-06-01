@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+
+
+//Route::resource('estoques', App\Http\Controllers\API\estoqueAPIController::class);
