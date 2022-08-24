@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Carbon;
 use App\DataTables\ordemDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateordemRequest;
 use App\Http\Requests\UpdateordemRequest;
 use App\Repositories\ordemRepository;
+use App\Repositories\status_ordemRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -14,12 +15,16 @@ use Helper;
 
 class ordemController extends AppBaseController
 {
-    /** @var  ordemRepository */
+    /** @var  ordemorRepository */
     private $ordemRepository;
 
-    public function __construct(ordemRepository $ordemRepo)
+    private $status_ordemRepository;
+
+
+    public function __construct(ordemRepository $ordemRepo, status_ordemRepository $status_ordemRepo)
     {
         $this->ordemRepository = $ordemRepo;
+        $this->status_ordemRepository = $status_ordemRepo;
     }
 
     /**
@@ -70,6 +75,7 @@ class ordemController extends AppBaseController
     public function show($id)
     {
         $ordem = $this->ordemRepository->find($id);
+        $status =$this->status_ordemRepository->find($id);
 
         if (empty($ordem)) {
             Flash::error(__('messages.not_found', ['model' => __('models/ordems.singular')]));
@@ -97,7 +103,7 @@ class ordemController extends AppBaseController
             return redirect(route('ordems.index'));
         }
 
-        return view('ordems.edit')->with('ordem', $ordem);
+        return view('ordems.edit')->with(['ordem'=>$ordem, 'status'=> $this->status_ordemRepository->all()->pluck('nome','id')]);
     }
 
     /**
@@ -110,7 +116,13 @@ class ordemController extends AppBaseController
      */
     public function update($id, UpdateordemRequest $request)
     {
+      // dd(Carbon::createFromFormat('d/m/Y', $request->data_ini)->format('Y-m-d'));
         $ordem = $this->ordemRepository->find($id);
+        $data_ordem = $request->all();
+        $data_ordem['data_end']=  Carbon::createFromFormat('d/m/Y', $data_ordem['data_end'])->format('Y-m-d');
+
+        $data_ordem['data_ini'] = Carbon::createFromFormat('d/m/Y', $data_ordem['data_ini'])->format('Y-m-d');
+
 
         if (empty($ordem)) {
             Flash::error(__('messages.not_found', ['model' => __('models/ordems.singular')]));
@@ -118,7 +130,7 @@ class ordemController extends AppBaseController
             return redirect(route('ordems.index'));
         }
 
-        $ordem = $this->ordemRepository->update($request->all(), $id);
+        $ordem = $this->ordemRepository->update($data_ordem, $id);
 
         Flash::success(__('messages.updated', ['model' => __('models/ordems.singular')]));
 

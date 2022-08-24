@@ -1,0 +1,48 @@
+/**
+ * Print Stylesheet fuer Deinewebsite.de
+* @version         1.0
+* @lastmodified    16.06.2016
+
+*/
+ @media print {
+
+     .card-header {
+         padding: 0rem 0rem !important;
+         margin-bottom: 0 !important;
+         background-color: rgba(0,0,0,0) !important;
+         border-bottom: 0px solid rgba(0,0,0,0) !important;
+     }
+     .row {
+         padding-right: 15px !important;
+         margin-left: 0px !important;
+     }
+
+     .table-bordered {
+         border: 2px solid #000 !important;
+     }
+
+     .pl-3, .px-3 {
+         padding-left: 0rem !important;
+         background-color: rgba(0,0,0,0) !important;
+         border-bottom: 0px solid rgba(0,0,0,0) !important;
+     }
+     .pr-3, .px-3 {
+         padding-right: 0rem !important;
+         background-color: rgba(0,0,0,0) !important;
+         border-bottom: 0px solid rgba(0,0,0,0) !important;
+     }
+     .pl-3, .px-3 {
+         padding-left: 0rem !important;
+         background-color: rgba(0,0,0,0) !important;
+         border-bottom: 0px solid rgba(0,0,0,0) !important;
+     }
+     .pr-3, .px-3 {
+         padding-right: 0rem !important;
+         background-color: rgba(0,0,0,0) !important;
+         border-bottom: 0px solid rgba(0,0,0,0) !important;
+     }
+}
+.row {
+    padding-right: 15px !important;
+    margin-left: 0px !important;
+}

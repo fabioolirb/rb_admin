@@ -1,5 +1,21 @@
 @extends('layouts.app')
 
+@push('page_scripts')
+        <script>
+            function check(id){
+                $.ajax({
+                    url: '/admin/producaos/finaliza',
+                    method: 'POST',
+                    //dataType: 'json',
+                    data: {order_id:id},
+                    success: function(response){
+                        toastr.info('Status da ordem  <b>'+id+'</b> Finalizado!!');
+                    }
+                });
+            }
+        </script>
+@endpush
+
 @section('content')
     <section class="content-header">
         <div class="container-fluid">

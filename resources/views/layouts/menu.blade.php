@@ -4,6 +4,7 @@ $urlAdmin=config('fast.admin_prefix');
 
 @can('dashboard')
 @php
+
 $isDashboardActive = Request::is($urlAdmin);
 @endphp
 <li class="nav-item">
@@ -29,6 +30,7 @@ $isUserActive = Request::is($urlAdmin.'*generator_builder*');
 @can('attendances.index')
 @php
 $isUserActive = Request::is($urlAdmin.'*attendances*');
+//dd($isUserActive);
 @endphp
 
 <li class="nav-item">
@@ -97,7 +99,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
 </li>
 @endcan
 -->
-@canany(['estado.index','cidade.index','cor.index'])
+
     @php
 
         $isEstadoActive = Request::is($urlAdmin.'*estado*');
@@ -122,6 +124,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
       //  $isOperadorActive =  Request::is($urlAdmin.'*cor*');
 
     @endphp
+@canany(['ordems.index','producaos.index','Estoque.index'])
 
     <li class="nav-item {{($isOredems||$isProducaes||$isEstoque)?'menu-open':''}} ">
         <a href="#" class="nav-link">
@@ -157,7 +160,9 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
             </li>
         </ul>
     </li>
+@endcan
 
+@canany(['estados.index','cidades.index','cors.index','operadors.index','maquinas.index','turnos.index','statusOrdems.index'])
     <li class="nav-item {{($isStatusOrdemsActive|| $isEstadoActive||$isCidadeActive||$isCorActive||$isMaquinaActive||$isTurnoActive||$isOperadorActive)?'menu-open':''}} ">
         <a href="#" class="nav-link">
             <i class="fa fa-gears nav-icon"></i>
@@ -176,6 +181,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
+                    @canany(['estados.index'])
                     <li class="nav-item">
                         <a href="{{ route('estados.index') }}"
                            class="nav-link {{ Request::is('*estados*') ? 'active' : '' }}">
@@ -183,7 +189,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                             <p>@lang('models/estados.plural')</p>
                         </a>
                     </li>
-
+                    @endcan
+                    @canany(['cidades.index'])
                     <li class="nav-item">
                         <a href="{{ route('cidades.index') }}"
                            class="nav-link {{ Request::is('*cidades*') ? 'active' : '' }}">
@@ -191,7 +198,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                             <p>@lang('models/cidades.plural')</p>
                         </a>
                     </li>
-
+                    @endcan
+                    @canany(['cors.index'])
                     <li class="nav-item">
                         <a href="{{ route('cors.index') }}"
                            class="nav-link {{ Request::is('*cors*') ? 'active' : '' }}">
@@ -199,7 +207,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                             <p>@lang('models/cors.plural')</p>
                         </a>
                     </li>
-
+                    @endcan
+                    @canany(['operadors.index'])
                     <li class="nav-item">
                         <a href="{{ route('operadors.index') }}"
                            class="nav-link {{ Request::is('*operadors*') ? 'active' : '' }}">
@@ -207,7 +216,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                             <p>@lang('models/operadors.plural')</p>
                         </a>
                     </li>
-
+                    @endcan
+                    @canany(['maquinas.index'])
                     <li class="nav-item">
                         <a href="{{ route('maquinas.index') }}"
                            class="nav-link {{ Request::is('*maquinas*') ? 'active' : '' }}">
@@ -215,7 +225,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                             <p>@lang('models/maquinas.plural')</p>
                         </a>
                     </li>
-
+                    @endcan
+                    @canany(['turnos.index'])
                     <li class="nav-item">
                         <a href="{{ route('turnos.index') }}"
                            class="nav-link {{ Request::is('*turnos*') ? 'active' : '' }}">
@@ -223,7 +234,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                             <p>@lang('models/turnos.plural')</p>
                         </a>
                     </li>
-
+                    @endcan
+                    @canany(['statusOrdems.index'])
                     <li class="nav-item">
                         <a href="{{ route('statusOrdems.index') }}"
                            class="nav-link {{ Request::is('*statusOrdems*') ? 'active' : '' }}">
@@ -231,10 +243,15 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                             <p>@lang('models/statusOrdems.plural')</p>
                         </a>
                     </li>
+
+                        @endcan
                 </ul>
             </li>
 
         </ul>
+    </li>
+    @endcan
+    @canany(['produtos.index','categorias.index','imagemProdutos.index'])
     <li class="nav-item {{($isProdutoActive||$isCategoriaActive||$isImagemProdutosActive)?'menu-open':''}} ">
         <a href="#" class="nav-link">
             <i class="nav-icon fas fa-box"></i>
@@ -243,7 +260,10 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                 <i class="fas fa-angle-left right"></i>
             </p>
         </a>
+
         <ul class="nav nav-treeview">
+
+            @canany(['categorias.index'])
             <li class="nav-item">
                 <a href="{{ route('categorias.index') }}"
                    class="nav-link {{ Request::is('*categorias*') ? 'active' : '' }}">
@@ -251,7 +271,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                     <p>@lang('models/categorias.plural')</p>
                 </a>
             </li>
-
+            @endcan
+            @canany(['produtos.index'])
             <li class="nav-item">
                 <a href="{{ route('produtos.index') }}"
                    class="nav-link {{ Request::is('*produtos*') ? 'active' : '' }}">
@@ -259,7 +280,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                     <p>@lang('models/produtos.plural')</p>
                 </a>
             </li>
-
+            @endcan
+            @canany(['imagemProdutos.index'])
             <li class="nav-item">
                 <a href="{{ route('imagemProdutos.index') }}"
                    class="nav-link {{ Request::is('*imagemProdutos*') ? 'active' : '' }}">
@@ -267,10 +289,11 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                     <p>@lang('models/imagemProdutos.plural')</p>
                 </a>
             </li>
+            @endcan
         </ul>
     </li>
-    </li>
-
+    @endcan
+    @canany(['montagems.index','montadoras.index','montadoras.index','statusMontadoras.index','statusMontagems.index'])
     <li class="nav-item {{($isStatusMontagemActive|| $isStatusMontadoraActive||$isMontagemsActive||$isStatusMontadoraActive||$isMontadore)?'menu-open':''}} ">
         <a href="#" class="nav-link">
             <i class="fa fa-cubes nav-icon"></i>
@@ -279,8 +302,10 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                 <i class="fas fa-angle-left right"></i>
             </p>
         </a>
+
         <ul class="nav nav-treeview">
 
+            @canany(['montagems.index'])
             <li class="nav-item">
                 <a href="{{ route('montagems.index') }}"
                    class="nav-link {{ Request::is('*montagems*') ? 'active' : '' }}">
@@ -288,6 +313,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                     <p>@lang('models/montagems.plural')</p>
                 </a>
             </li>
+            @endcan
+            @canany(['montadoras.index'])
             <li class="nav-item">
                 <a href="{{ route('montadoras.index') }}"
                    class="nav-link {{ Request::is('*montadoras*') ? 'active' : '' }}">
@@ -295,6 +322,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                     <p>@lang('models/montadoras.plural')</p>
                 </a>
             </li>
+            @endcan
+            @canany(['statusMontadoras.index'])
             <li class="nav-item">
                 <a href="{{ route('statusMontadoras.index') }}"
                    class="nav-link {{ Request::is('*statusMontadoras*') ? 'active' : '' }}">
@@ -302,7 +331,8 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                     <p>@lang('models/statusMontadoras.plural')</p>
                 </a>
             </li>
-
+            @endcan
+            @canany(['statusMontagems.index'])
             <li class="nav-item">
                 <a href="{{ route('statusMontagems.index') }}"
                    class="nav-link {{ Request::is('*statusMontagems*') ? 'active' : '' }}">
@@ -310,10 +340,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                     <p>@lang('models/statusMontagems.plural')</p>
                 </a>
             </li>
+            @endcan
         </ul>
     </li>
-
-@endcan
-
-
-
+    @endcan

@@ -46,6 +46,21 @@
             margin-bottom: .5rem;
             line-height: 1.8;
         }
+
+       @media print {
+           .content-wrapper {
+               background: #fff;
+           }
+           @page :left {
+               margin-left: 3cm;
+           }
+
+           @page :right {
+               margin-left: 4cm;
+           }
+
+
+       }
     </style>
     @stack('page_css')
 
@@ -115,7 +130,7 @@
         </div>
 
         <!-- Main Footer -->
-        <footer class="main-footer">
+        <footer class="main-footer d-print-none">
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 0.0.1
             </div>

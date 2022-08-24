@@ -6,11 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Repositories\DashboardRepository;
 
+
 class DashboardController extends Controller
 {
     /** @var  DashboardRepository */
     private $dashboardRepository;
-
 
     /**
      * Create a new controller instance.
@@ -30,6 +30,7 @@ class DashboardController extends Controller
     public function index()
     {
         $data = $this->dashboardRepository->GetData();
+       // dd($data);
         return view('dashboard.index', $data);
     }
 }

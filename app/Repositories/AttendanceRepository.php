@@ -63,6 +63,7 @@ class AttendanceRepository extends BaseRepository
         if ($to) {
             $query->where('day', '<=', $to);
         }
+
         return $query->groupBy('day')->select('day', DB::Raw('count(0) as total'))->pluck('total', 'day');
     }
 }

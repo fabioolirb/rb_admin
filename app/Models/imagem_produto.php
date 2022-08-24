@@ -75,7 +75,7 @@ class imagem_produto extends Model
 
     public function getCorTextAttribute()
     {
-        return $this->cor->pluck('cor')->implode(',');
+        return $this->cor->pluck('cor')->implode(' ');
     }
 
     public function produto_cor($cor_id,$categoria_id,$busca)
@@ -95,7 +95,13 @@ class imagem_produto extends Model
             ->addSelect(DB::raw('group_concat(imagem_cors.cor_id) as cor_id'))
             ->addSelect(DB::raw('group_concat(cors.cor) as cor'))
             ->addSelect(DB::raw('group_concat(cors.referencia) as referencia'))
-            ->groupBy('imagem_cors.imagem_id');
+            ->groupBy('imagem_cors.imagem_id',
+                        'produtos.nome',
+                        'produtos.referencia',
+                        'imagem_produtos.nome',
+                        'imagem_produtos.link',
+                        'imagem_produtos.produto_id',
+                        'imagem_cors.imagem_id');
 
 
         if (!empty($cor_id))
@@ -124,5 +130,7 @@ class imagem_produto extends Model
         return $this->belongsToMany(produto::class,'montagem_has_produto','produto_id','montagem_id','quatidade');
     }
 
-
+    public function imagem_has_cor_delete($id){
+        return DB::delete('delete from imagem_cors where imagem_id = '.$id);
+    }
 }

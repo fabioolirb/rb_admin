@@ -62,7 +62,7 @@ class montadora extends Model
         'nome' => 'string',
         'ddd' => 'integer',
         'fone' => 'integer',
-        'contrato' => 'integer',
+        'contrato' => 'string',
         'logradouro' => 'string',
         'bairro' => 'string',
         'nr' => 'integer',

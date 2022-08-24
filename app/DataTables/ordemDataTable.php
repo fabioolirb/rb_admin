@@ -30,7 +30,7 @@ class ordemDataTable extends DataTable
      */
     public function query(ordem $model)
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('status');
     }
 
     /**
@@ -88,8 +88,10 @@ class ordemDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'data_ini' => new Column(['title' => __('models/ordems.fields.data_ini'),'type'=>'date-uk', 'data' => 'data_ini']),
-            'data_end' => new Column(['title' => __('models/ordems.fields.data_end'), 'data' => 'data_end'])
+            'id' => new Column(['title' => __('models/ordems.fields.id'),'data' => 'id','searchable' => true]),
+            'data_ini' => new Column(['title' => __('models/ordems.fields.data_ini'), 'data' => 'data_ini']),
+            'data_end' => new Column(['title' => __('models/ordems.fields.data_end'), 'data' => 'data_end']),
+            'Status' => new Column(['title' => __('models/statusOrdems.fields.nome'), 'data' => 'status.nome'])
         ];
     }
 

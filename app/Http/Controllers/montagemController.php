@@ -95,6 +95,7 @@ class montagemController extends AppBaseController
              //
         //$montagem->produto_has()->attach(['produto_id'=>$produto_id,'quantidade'=>$quantidade]);
 
+
         Flash::success(__('messages.saved', ['model' => __('models/montagems.singular')]));
 
         return redirect(route('montagems.index'));

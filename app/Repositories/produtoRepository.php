@@ -6,6 +6,7 @@ use App\Models\categoria;
 use App\Models\Estados;
 use App\Models\produto;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class produtoRepository

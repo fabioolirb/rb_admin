@@ -15,6 +15,7 @@ use App\Repositories\produtoRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Response;
 use Illuminate\Support\Facades\DB;
 use Helper;
@@ -72,6 +73,8 @@ class estoqueController extends AppBaseController
     public function store(CreateestoqueRequest $request)
     {
         $input = $request->all();
+
+        $input['data_producao'] = Carbon::createFromFormat('d/m/Y', $input['data_producao'])->format('Y-m-d');
 
         $estoque = $this->estoqueRepository->create($input);
 

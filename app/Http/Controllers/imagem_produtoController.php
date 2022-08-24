@@ -100,7 +100,8 @@ class imagem_produtoController extends AppBaseController
      */
     public function show($id)
     {
-        $imagemProduto = $this->imagemProdutoRepository->find($id);
+       // $imagemProduto = $this->imagemProdutoRepository->find($id);
+        $imagemProduto = $this->imagemProdutoRepository->find($id)->load('cor');
 
         if (empty($imagemProduto)) {
             Flash::error(__('messages.not_found', ['model' => __('models/imagemProdutos.singular')]));
@@ -129,9 +130,9 @@ class imagem_produtoController extends AppBaseController
         }
 
         return view('imagem_produtos.edit')
-                ->with('imagemProduto',$imagemProduto)
-                ->with('produtos',$this->produtoRepository->all()->pluck('nome', 'id'))
-                ->with('cors' ,$this->corRepository->all()->pluck('referencia', 'id'));
+            ->with('imagemProduto',$imagemProduto)
+            ->with('produtos',$this->produtoRepository->all()->pluck('nome', 'id'))
+            ->with('cors' ,$this->corRepository->all()->pluck('referencia', 'id'));
     }
 
     /**
@@ -144,22 +145,28 @@ class imagem_produtoController extends AppBaseController
      */
     public function update($id, Updateimagem_produtoRequest $request)
     {
+
         $imagemProduto = $this->imagemProdutoRepository->find($id)->load('cor');
+        $input = $request->all();
+
+        if ($request->hasFile('link')) {
+            $file_upload = $request->file('link');
+            $name = time() . '_' . $file_upload->getClientOriginalName();
+            $filePath = $file_upload->storeAs('imagem_produto', $name, 'public');
+            $input['link'] = $filePath;
+        }
 
         if (empty($imagemProduto)) {
             Flash::error(__('messages.not_found', ['model' => __('models/imagemProdutos.singular')]));
-
             return redirect(route('imagemProdutos.index'));
         }
 
-        $imagemProduto = $this->imagemProdutoRepository->update($request->all(), $id);
-
+        $imagemProduto = $this->imagemProdutoRepository->update($input, $id);
         $cor_data = $request->get('cor_data');
-        //dd($cor_data);
+        $imagemProduto->imagem_has_cor_delete($id);
         $imagemProduto->cor()->attach($cor_data);
 
         Flash::success(__('messages.updated', ['model' => __('models/imagemProdutos.singular')]));
-
         return redirect(route('imagemProdutos.index'));
     }
 

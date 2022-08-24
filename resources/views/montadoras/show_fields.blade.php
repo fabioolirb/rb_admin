@@ -1,3 +1,4 @@
+
 <!-- Id Field -->
 <div class="col-sm-12">
     {!! Form::label('id', __('models/montadoras.fields.id').':') !!}
@@ -19,7 +20,10 @@
 <!-- Contrato Field -->
 <div class="col-sm-12">
     {!! Form::label('contrato', __('models/montadoras.fields.contrato').':') !!}
-    <p>{{ $montadora->contrato }}</p>
+    <p>{{ $montadora->contrato }}
+        <a href="{{url('')}}/storage/{{$montadora->contrato }}" download='' target="_blank" rel="noopener noreferrer">Baixar</a>
+    </p>
+
 </div>
 
 <!-- Logradouro Field -->
@@ -43,12 +47,12 @@
 <!-- Cidade Id Field -->
 <div class="col-sm-12">
     {!! Form::label('cidade_id', __('models/montadoras.fields.cidade_id').':') !!}
-    <p>{{ $montadora->cidade_id }}</p>
+    <p>{{ $cidades[$montadora->cidade_id] }}</p>
 </div>
 
 <!-- Estado Id Field -->
 <div class="col-sm-12">
     {!! Form::label('estado_id', __('models/montadoras.fields.estado_id').':') !!}
-    <p>{{ $montadora->estado_id }}</p>
+    <p>{{ $estados[$montadora->estado_id] }}</p>
 </div>
 

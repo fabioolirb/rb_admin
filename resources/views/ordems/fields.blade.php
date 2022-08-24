@@ -22,6 +22,12 @@
     {!! Form::text('data_end', Helper::outDate($ordem->data_end), ['class' => 'form-control','id'=>'data_end']) !!}
 </div>
 
+<!-- Cidade Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('status_ordem_id', __('models/statusOrdems.fields.nome').':') !!}
+    {!! Form::select('status_ordem_id', $status, null, ['class' => 'form-control custom-select']) !!}
+</div>
+
 
 @push('page_scripts')
     <script type="text/javascript">

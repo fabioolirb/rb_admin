@@ -88,14 +88,16 @@ class producaoDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' => new Column(['title' => __('models/producaos.fields.id'), 'data' => 'id','searchable' => true]),
+            'id' => new Column(['title' => __('models/producaos.fields.id'), 'data' => 'id','searchable' => false]),
+            'Ordem' => new Column(['title' => __('Ordem'), 'data' => 'ordem_id','searchable' => true]),
             'data_ini' => new Column(['title' => __('models/producaos.fields.data_ini'), 'data' => 'data_ini','searchable' => false ]),
             'data_end' => new Column(['title' => __('models/producaos.fields.data_end'), 'data' => 'data_end','searchable' => false]),
-            'turnos_nome' => new Column(['title' => __('models/producaos.fields.turnos_nome'), 'data' => 'turnos_nome','searchable' => false]),
-            'imagem_produtos_nome' => new Column(['title' => __('models/producaos.fields.imagem_produtos_nome'), 'data' => 'imagem_produtos_nome','searchable' => false]),
+            'turnos_nome' => new Column(['title' => __('models/producaos.fields.turnos_nome'), 'data' => 'turnos_nome','searchable' => true]),
+            'imagem_produtos_nome' => new Column(['title' => __('models/producaos.fields.imagem_produtos_nome'), 'data' => 'imagem_produtos_nome','searchable' => true]),
             'qtd_diario' => new Column(['title' => __('models/producaos.fields.qtd_diario'), 'data' => 'qtd_diario','searchable' => false]),
-            'maquina_nome' => new Column(['title' => __('models/producaos.fields.maquina_nome'), 'data' => 'maquina_nome','searchable' => false]),
+            'maquina_nome' => new Column(['title' => __('models/producaos.fields.maquina_nome'), 'data' => 'maquina_nome','searchable' => true]),
             'producao' => new Column(['title' => __('Produção'), 'data' => 'qtd_producao','searchable' => false]),
+            'Status' => new Column(['title' => __('Status'), 'data' => 'status_ordem','searchable' => true])
         ];
     }
 

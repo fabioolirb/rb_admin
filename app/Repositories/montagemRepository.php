@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\montagem;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class montagemRepository
@@ -40,4 +41,10 @@ class montagemRepository extends BaseRepository
     {
         return montagem::class;
     }
+
+    public function getTotalMontagem(){
+        $query = DB::table('vw_tolal_montagem')->select('*');
+        return $query->get();
+    }
+
 }

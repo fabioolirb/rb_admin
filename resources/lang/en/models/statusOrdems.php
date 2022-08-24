@@ -3,10 +3,10 @@
 return array (
   'singular' => 'status_ordem',
   'plural' => 'status_ordems',
-  'fields' => 
+  'fields' =>
   array (
     'id' => 'Id',
-    'nome' => 'Nome',
+    'nome' => 'Status',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
   ),

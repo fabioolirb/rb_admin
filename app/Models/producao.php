@@ -46,7 +46,7 @@ class producao extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'data' => 'datetime:d/m/Y',
+        'data' => 'date',
         'imagem_id' => 'integer',
         'maquina_id' => 'integer',
         'turno_id' => 'integer',
@@ -99,5 +99,6 @@ class producao extends Model
          return $result;
 
     }
+
 
 }

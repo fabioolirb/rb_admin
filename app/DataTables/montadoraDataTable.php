@@ -91,12 +91,12 @@ class montadoraDataTable extends DataTable
         return [
             'nome' => new Column(['title' => __('models/montadoras.fields.nome'), 'data' => 'nome']),
             'fone' => new Column(['title' => __('models/montadoras.fields.fone'), 'data' => 'fone']),
-            'contrato' => new Column(['title' => __('models/montadoras.fields.contrato'), 'data' => 'contrato']),
             'logradouro' => new Column(['title' => __('models/montadoras.fields.logradouro'), 'data' => 'logradouro']),
             'bairro' => new Column(['title' => __('models/montadoras.fields.bairro'), 'data' => 'bairro']),
             'nr' => new Column(['title' => __('models/montadoras.fields.nr'), 'data' => 'nr']),
             'cidade_id' => new Column(['title' => __('models/montadoras.fields.cidade_id'), 'data' => 'cidades.nome']),
-            'estado_id' => new Column(['title' => __('models/montadoras.fields.estado_id'), 'data' => 'estados.nome'])
+            'estado_id' => new Column(['title' => __('models/montadoras.fields.estado_id'), 'data' => 'estados.nome']),
+            'contrato' => new Column(['title' => __('models/montadoras.fields.contrato'), 'data' => 'contrato'])
         ];
     }
 

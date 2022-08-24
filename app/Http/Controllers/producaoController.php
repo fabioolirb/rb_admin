@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 //use http\Env\Request;
 use App\Models\produto;
 use App\Repositories\ordemRepository;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\DataTables\producaoDataTable;
@@ -19,9 +20,11 @@ use App\Repositories\turnoRepository;
 use App\Repositories\categoriaRepository;
 use App\Models\imagem_produto;
 use App\Models\vwproducao;
+use App\Models\ordem;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Database\Eloquent\Model;
+use Nette\Utils\DateTime;
 use PhpParser\Node\Expr\Array_;
 use Response;
 
@@ -44,7 +47,7 @@ class producaoController extends AppBaseController
     private $ordemRepository;
 
 
-    public function __construct(ordemRepository $ordermRepo ,producaoRepository $producaoRepo , turnoRepository $turnoRepo , imagem_produtoRepository $imagem_produtoRepo, maquinaRepository $maquinaRepo, operadorRepository $operadorRepo,  corRepository $corRepo, categoriaRepository $categoriaRepo)
+    public function __construct(ordem $ordermRepo ,producaoRepository $producaoRepo , turnoRepository $turnoRepo , imagem_produtoRepository $imagem_produtoRepo, maquinaRepository $maquinaRepo, operadorRepository $operadorRepo,  corRepository $corRepo, categoriaRepository $categoriaRepo)
     {
         $this->producaoRepository = $producaoRepo;
         $this->turnoRepository = $turnoRepo ;
@@ -100,9 +103,10 @@ class producaoController extends AppBaseController
         $input = $request->all();
         $request_order = array();
 
-        $request_order['data_ini'] = $input['_data_ini'][0];
+
+        $request_order['data_ini'] = Carbon::createFromFormat('d/m/Y', $input['_data_ini'][0])->format('Y-m-d');
         $request_order['maquina_id'] = $input['_maquina_id'][0];
-        $request_order['data_end'] = $input['_data_fim'][0];
+        $request_order['data_end'] = Carbon::createFromFormat('d/m/Y', $input['_data_fim'][0])->format('Y-m-d');
 
         $imagem_select = $input['_imagem_id'];
 
@@ -113,7 +117,7 @@ class producaoController extends AppBaseController
         foreach ($imagem_select as $key => $imagem){
 
             $request_order['imagem_id'] = $imagem;
-            $request_order['data'] = $input['_data_ini'][$key];
+            $request_order['data'] = Carbon::createFromFormat('d/m/Y', $input['_data_ini'][$key])->format('Y-m-d');
             $request_order['operador_id'] = $input['_operador_id'][$key];
             $request_order['turno_id'] = $input['_turno_id'][$key];
             $request_order['qtd_diario'] = $input['_qtd_diario'][$key];
@@ -142,14 +146,37 @@ class producaoController extends AppBaseController
      */
     public function show($id ,vwproducao $vwproducao, produto $rs_produtos)
     {
-        $producao = $vwproducao->order_id($id);
-
-
+        $producao = $vwproducao->producao_id($id);
+        $prazo = 0;
         foreach ( $producao as $key => $produto){
+
+            $date1 = Carbon::createFromFormat('d/n/Y', $produto->data_ini);
+            $date2 = Carbon::createFromFormat('d/n/Y', $produto->data_end);
+
+            $prazo = $date2->diffInDays($date1);
             $ordem = $produto;
-            $dadosProduto = $rs_produtos->vw_produtos($produto->produto_id);
+            $producao[$key]->prazo = $prazo;
+
+            $dadosProduto = $rs_produtos->vw_produtos($produto->produto_id,$produto->imagem_id);
             $producao[$key]->info = $dadosProduto;
+
         }
+
+        $dataproducao = array();
+        for ($i = 1; $i <= $prazo; $i++) {
+            $data = Carbon::createFromFormat('d/n/Y', date('d/m/Y', strtotime('+' . $i . ' days', strtotime($date1))));
+
+            if ($data->dayOfWeek >= 1 and $data->dayOfWeek <= 5) {
+                $dataproducao[] = $data->format('d/m/Y');
+            }else{
+              //  $dataproducao[] = ($data->dayOfWeek == 6)?'Sabado ____':'Domingo __';
+            }
+            if($i > 85 ){
+                $i = $prazo;
+                $dataproducao[] = "Superior a 60 dias!";
+            }
+        }
+//dd($dataproducao);
 
         if (empty($produto)) {
             Flash::error(__('messages.not_found', ['model' => __('models/producaos.singular')]));
@@ -157,7 +184,7 @@ class producaoController extends AppBaseController
             return redirect(route('producaos.index'));
         }
 
-        return view('producaos.show')->with(['producao'=>$producao,'ordem'=>$ordem]);
+        return view('producaos.show')->with(['producao'=>$producao,'ordem'=>$ordem,'dataproducao'=>$dataproducao,'index'=>0]);
 
     }
 
@@ -253,7 +280,7 @@ class producaoController extends AppBaseController
             $produtos_cores = $imagem_produto->produto_cor($id_cor,$categoria_id,$busca);
 
             foreach ( $produtos_cores as $key => $produto){
-                $produtos_cores[$key]->info = $rs_produtos->vw_produtos($produto->produto_id);
+              $produtos_cores[$key]->info = $rs_produtos->vw_produtos($produto->produto_id,$produto->imagem_id);
 
             }
 
@@ -263,6 +290,23 @@ class producaoController extends AppBaseController
 
         }
 
+
+    }
+
+
+    public function finaliza(Request $request){
+
+        $ordem = $this->ordemRepository->find($request->order_id);
+        $dados = array();
+        //dd($ordem);
+        if(empty($ordem)){
+            return false;
+        }else{
+            $dados['status_ordem_id'] = 2;
+            //dd($dados);
+            $ordem->update($dados);
+            echo true;
+        }
 
     }
 
