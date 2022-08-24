@@ -5,16 +5,16 @@ hold-transition login-page
 
 @section('content')
 <div class="login-box">
-    <div class="login-logo">
-        <a href="{{ route('home') }}"><b>{{ config('app.name') }}</b></a>
-    </div>
-
+    <div>
+        <h2 style="text-align: center !important;"><a href="{{ route('home') }}"><b>{{ config('app.name') }}</b></a></h2>
     <!-- /.login-logo -->
 
     <!-- /.login-box-body -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">@lang('auth.login.title')</p>
+    <div class="container">
+        <div class="card">
+
+        <div class="card-body">
+           <!-- <p class="login-box-msg">@lang('auth.login.title')</p> -->
 
             <form method="post" action="{{ url('/login') }}">
                 @csrf
@@ -49,7 +49,7 @@ hold-transition login-page
                 </div>
 
                 <div class="row">
-                    <div class="justify-content-md-center">
+                    <div class="form-check mb-3">
                         <input type="checkbox" id="remember">
                         <label for="remember">@lang('auth.login.field.remember')</label>
                     </div>
@@ -67,6 +67,8 @@ hold-transition login-page
             </div>
         </div>
         <!-- /.login-card-body -->
+    </div>
+    </div>
     </div>
     @include('layouts.lang')
 </div>

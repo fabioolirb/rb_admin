@@ -33,30 +33,20 @@ class vwproducao extends Model
     protected $info = array();
 
     public $fillable = [
-        'id',
-        'ordem_id',
-        'maquina_id',
-        'data_ini',
-        'data_end',
-        'producao_id',
-        'data',
-        'imagem_id',
-        'turno_id',
-        'operador_id',
-        'qtd_diario',
-        'turnos_nome',
-        'nome',
-        'imagem_produtos_nome',
-        'link',
         'produto_id',
+        'produto_nome',
+        'produto_referencia',
+        'prazo_producao',
+        'categoria_id',
+        'categoria_nome',
+        'imagem_id',
+        'imagem_nome',
+        'link',
         'cor_id',
         'cor',
-        'referencia',
-        'deleted_at',
-        'updated_at',
-        'created_at',
-        'status_ordem_id',
-        'qtd_producao'
+        'cors_referencia',
+        'info',
+        'status_ordem'
 
     ];
 
@@ -74,12 +64,14 @@ class vwproducao extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'data' => 'date',
+        'data' ,
         'imagem_id' => 'integer',
         'maquina_id' => 'integer',
         'turno_id' => 'integer',
         'operador_id' => 'integer',
-        'qtd_diario' =>'integer'
+        'qtd_diario' =>'integer',
+        'data_ini',
+        'data_end'
     ];
 
     /**
@@ -120,12 +112,20 @@ class vwproducao extends Model
         return $this->hasMany(\App\Models\operador::class, 'operador_id', 'id');
     }
 
-    public function  order_id($id){
+    public function  producao_id($id){
+        return $this->where('id', $id)->get();
+    }
+
+    public function  ordem_id($id){
         return $this->where('ordem_id', $id)->get();
     }
 
     public function  status_ordem(){
         return $this->hasMany(\App\Models\status_ordem::class, 'status_ordem_id', 'id');
+    }
+
+    public function  imagem_id($id){
+        return $this->where('imagem_id', $id)->get();
     }
 
 }

@@ -90,7 +90,7 @@ class imagem_produtoDataTable extends DataTable
             'nome' => new Column(['title' => __('models/imagemProdutos.fields.nome'), 'data' => 'nome']),
             'link' => new Column(['title' => __('models/imagemProdutos.fields.link'), 'data' => 'link']),
             'nome_produto' => new Column(['title' => __('models/produtos.fields.referencia'), 'data' => 'produto.nome']),
-            'cor_text'
+            'cor_text' => ['searchable' => false]
         ];
     }
 

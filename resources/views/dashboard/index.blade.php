@@ -96,27 +96,31 @@
         <!-- /.row -->
 
         <div class="row">
-            <div class="col-md-12">
-                <div class="card">
+            <div class="col-md-6">
+                <div class="card card-primary">
                     <div class="card-header">
-                        <h5 class="card-title">User checkin/out</h5>
+                        <h5 class="card-title">Produção por Máquina 30 dias</h5>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
+                            <!--
                             <div class="btn-group">
                                 <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
                                     <i class="fas fa-wrench"></i>
                                 </button>
+
                                 <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <a href="#" class="dropdown-item">Action</a>
-                                    <a href="#" class="dropdown-item">Another action</a>
-                                    <a href="#" class="dropdown-item">Something else here</a>
+                                    <a href="#" class="dropdown-item">Ação</a>
+                                    <a href="#" class="dropdown-item">Outra Ação</a>
+                                    <a href="#" class="dropdown-item">Outras</a>
                                     <a class="dropdown-divider"></a>
-                                    <a href="#" class="dropdown-item">Separated link</a>
+                                    <a href="#" class="dropdown-item">Link separado</a>
                                 </div>
+
                             </div>
+                              -->
                             <button type="button" class="btn btn-tool" data-card-widget="remove">
                                 <i class="fas fa-times"></i>
                             </button>
@@ -124,7 +128,132 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <canvas id="userCheckinChart" height="315" style="height: 180px; display: block; width: 462px;" width="808" class="chartjs-render-monitor"></canvas>
+                        <canvas id="producaoMaquinaChart" height="315" style="height: 180px; display: block; width: 462px;" width="808" class="chartjs-render-monitor"></canvas>
+                        <!-- /.row -->
+                    </div>
+                    <!-- ./card-body -->
+                    <div class="card-footer">
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-6">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h5 class="card-title">Montagens / Status 30 dias</h5>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <!--
+                           <div class="btn-group">
+                               <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                                   <i class="fas fa-wrench"></i>
+                               </button>
+                               <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                   <a href="#" class="dropdown-item">Ação</a>
+                                   <a href="#" class="dropdown-item">Outra Ação</a>
+                                   <a href="#" class="dropdown-item">Outras</a>
+                                   <a class="dropdown-divider"></a>
+                                   <a href="#" class="dropdown-item">Link separado</a>
+                               </div>
+                           </div>
+                           -->
+                           <button type="button" class="btn btn-tool" data-card-widget="remove">
+                               <i class="fas fa-times"></i>
+                           </button>
+                       </div>
+                   </div>
+                   <!-- /.card-header -->
+                    <div class="card-body">
+                        <canvas id="TotalPecasMontagemChart" height="315" style="height: 180px; display: block; width: 462px;" width="808" class="chartjs-render-monitor"></canvas>
+                        <!-- /.row -->
+                    </div>
+                    <!-- ./card-body -->
+                    <div class="card-footer">
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+
+            <div class="col-md-6">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h5 class="card-title">Total Produção 30 Dias</h5>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <!--
+                           <div class="btn-group">
+                               <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                                   <i class="fas fa-wrench"></i>
+                               </button>
+                               <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                   <a href="#" class="dropdown-item">Ação</a>
+                                   <a href="#" class="dropdown-item">Outra Ação</a>
+                                   <a href="#" class="dropdown-item">Outras</a>
+                                   <a class="dropdown-divider"></a>
+                                   <a href="#" class="dropdown-item">Link separado</a>
+                               </div>
+                           </div>
+                           -->
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <canvas id="TotalProducaoChart" height="315" style="height: 180px; display: block; width: 462px;" width="808" class="chartjs-render-monitor"></canvas>
+                        <!-- /.row -->
+                    </div>
+                    <!-- ./card-body -->
+                    <div class="card-footer">
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-6">
+                <div class="card card-danger">
+                    <div class="card-header">
+                        <h5 class="card-title">Total Produção Últimas 4 Semanas</h5>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <!--
+                           <div class="btn-group">
+                               <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                                   <i class="fas fa-wrench"></i>
+                               </button>
+                               <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                   <a href="#" class="dropdown-item">Ação</a>
+                                   <a href="#" class="dropdown-item">Outra Ação</a>
+                                   <a href="#" class="dropdown-item">Outras</a>
+                                   <a class="dropdown-divider"></a>
+                                   <a href="#" class="dropdown-item">Link separado</a>
+                               </div>
+                           </div>
+                           -->
+                            <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <canvas id="TotaProducaoSemanaChart" height="315" style="height: 180px; display: block; width: 462px;" width="808" class="chartjs-render-monitor"></canvas>
                         <!-- /.row -->
                     </div>
                     <!-- ./card-body -->
@@ -151,7 +280,11 @@
 @push('page_scripts')
 
 <script>
-var userCheckinChart = new Chart(document.getElementById('userCheckinChart').getContext('2d'), @json($chartUserCheckin));
+    var producaoMaquinaChart = new Chart(document.getElementById('producaoMaquinaChart').getContext('2d'), @json($producaoMaquina));
+    var TotalPecasMontagemChart = new Chart(document.getElementById('TotalPecasMontagemChart').getContext('2d'), @json($TotalPecasMontagem));
+    var TotalProducaoChart = new Chart(document.getElementById('TotalProducaoChart').getContext('2d'), @json($TotalProducao));
+    var TotaProducaoSemanaChart = new Chart(document.getElementById('TotaProducaoSemanaChart').getContext('2d'), @json($TotaProducaoSemana));
 </script>
 
 @endpush
+

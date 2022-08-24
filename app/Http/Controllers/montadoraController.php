@@ -62,6 +62,12 @@ class montadoraController extends AppBaseController
     {
         $input = $request->all();
 
+        if ($request->hasFile('contrato')) {
+            $file_upload = $request->file('contrato');
+            $name = time() . '_' . $file_upload->getClientOriginalName();
+            $filePath = $file_upload->storeAs('contrato', $name, 'public');
+            $input['contrato'] = $filePath;
+        }
         $montadora = $this->montadoraRepository->create($input);
 
         Flash::success(__('messages.saved', ['model' => __('models/montadoras.singular')]));
@@ -131,9 +137,18 @@ class montadoraController extends AppBaseController
             Flash::error(__('messages.not_found', ['model' => __('models/montadoras.singular')]));
 
             return redirect(route('montadoras.index'));
+
+        }
+         $input = $request->all();
+
+        if ($request->hasFile('contrato')) {
+            $file_upload = $request->file('contrato');
+            $name = time() . '_' . $file_upload->getClientOriginalName();
+            $filePath = $file_upload->storeAs('contrato', $name, 'public');
+            $input['contrato'] = $filePath;
         }
 
-        $montadora = $this->montadoraRepository->update($request->all(), $id);
+        $montadora = $this->montadoraRepository->update($input, $id);
 
         Flash::success(__('messages.updated', ['model' => __('models/montadoras.singular')]));
 

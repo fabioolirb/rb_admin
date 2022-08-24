@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 
 /**
@@ -94,6 +95,20 @@ class montagem extends Model
     public function getItensTotalAttribute()
     {
         return $this->itensMontagem->sum('quantidade');
+    }
+
+    public function getTotalMontagemEnvio(){
+
+           $query = DB::table('vw_tolal_montagem_envio')->select('*');
+            return $query->get();
+
+    }
+
+    public function getTotalMontagemRetorno(){
+        {
+            $query = DB::table('vw_tolal_montagem_retorno')->select('*');
+            return $query->get();
+        }
     }
 
 }

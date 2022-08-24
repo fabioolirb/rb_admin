@@ -30,6 +30,9 @@ Route::get('/checkOnline', function (App\Repositories\AttendanceRepository $atte
 
 //Route::get('admin/producoaos/create', 'producaoController@crete')->name('validacor');
 
+Route::post('/admin/producaos/finaliza', [App\Http\Controllers\producaoController::class , 'finaliza'])->name('producaos.finaliza');
+
+
 Route::post('/admin/producaos/validacor', [App\Http\Controllers\producaoController::class , 'validaCor'])->name('producaos.validacor');
 
 Route::post('/admin/estoques/getproduct', [App\Http\Controllers\estoqueController::class , 'getproduct'])->name('estoque.getproduct');

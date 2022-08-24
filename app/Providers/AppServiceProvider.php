@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
-        setlocale(LC_TIME, 'pt_br');
+        setlocale(LC_TIME, 'pt-br');
+
     }
 }

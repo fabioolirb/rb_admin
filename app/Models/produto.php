@@ -78,12 +78,13 @@ class produto extends Model
     }
 
 
-    public function vw_produtos($produto_id){
+    public function vw_produtos($produto_id,$imagem_id){
 
        // return $produtos = (array) DB::select('select * from vw_produtos where produto_id = ?',['produto_id'=>$produto_id]);
 
         $produtos = DB::table('vw_produtos')
-                               ->where('produto_id','=',$produto_id)->get()->toArray();
+                                ->where('imagem_id','=',$imagem_id)
+                                ->where('produto_id','=',$produto_id)->get()->toArray();
 
         return  $produtos;
     }

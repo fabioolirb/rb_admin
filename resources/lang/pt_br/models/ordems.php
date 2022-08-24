@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'singular' => 'ordem d serviço',
+  'singular' => 'Ordem de Serviço',
   'plural' => 'Ordens de Serviços',
   'fields' =>
   array (

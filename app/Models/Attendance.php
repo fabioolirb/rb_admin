@@ -58,7 +58,7 @@ class Attendance extends Model
     }
     public function getDayTextAttribute()
     {
-        return $this->day->format('Y-m-d');
+        return $this->day->format('d-m-Y');
     }
     /**
      * Validation rules

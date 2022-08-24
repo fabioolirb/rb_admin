@@ -9,7 +9,7 @@ return array (
     'nome' => 'Nome',
     'ddd' => 'ddd',
     'fone' => 'Telefone',
-    'contrato' => 'Contrato assinado',
+    'contrato' => 'Contrato',
     'logradouro' => 'Logradouro',
     'bairro' => 'Bairro',
     'nr' => 'Nr',

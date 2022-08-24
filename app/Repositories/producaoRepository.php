@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\producao;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class producaoRepository
@@ -44,4 +45,27 @@ class producaoRepository extends BaseRepository
     {
         return producao::class;
     }
+    public function getTotalProducao(){
+        $query = DB::table('vw_total_producao')->select('*');
+        return $query->get();
+    }
+
+    public function getTotalProducaoSemana(){
+        $query = DB::table('vw_toltal_producao_maquina')
+            ->select(DB::raw('sum(qtd_estoque) as qtd_estoque'),  DB::raw("WEEKDAY(data_producao) as semana_producao"),  DB::raw("WEEK(data_producao) as nr_semana_producao"))
+            ->groupBy(DB::raw('WEEKDAY(data_producao)'),DB::raw('WEEK(data_producao)'))
+             ->orderByDesc('nr_semana_producao','semana_producao');
+ //dd($query->toSql());
+        return $query->get();
+    }
+
+    public function getProducaoMaquina(){
+        $query = DB::table('vw_toltal_producao_maquina')
+            ->select('nome_maquina',DB::raw('sum(qtd_estoque) as qtd_estoque'),  DB::raw("data_producao"))
+            ->groupBy('nome_maquina',DB::raw('data_producao'))
+            ->orderByDesc('nome_maquina','data_producao');
+        //dd($query->toSql());
+        return $query->get();
+    }
+
 }

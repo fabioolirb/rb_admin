@@ -20,15 +20,12 @@ class ordem extends Model
 {
     use SoftDeletes;
 
-
     public $table = 'ordems';
-
 
     protected $dates = ['deleted_at'];
 
-
-
     public $fillable = [
+        'id',
         'data_ini',
         'data_end',
         'maquina_id',
@@ -42,8 +39,8 @@ class ordem extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'data_ini' => 'datetime:d/m/Y',
-        'data_end' => 'datetime:d/m/Y',
+        'data_ini' => 'date:d/m/Y' ,
+        'data_end' => 'date:d/m/Y',
         'maquina_id' => 'integer',
         'status_ordem_id' => 'integer'
     ];
@@ -72,7 +69,8 @@ class ordem extends Model
 
     public function status()
     {
-        return $this->hasMany(\App\Models\status_ordem::class, 'id', 'status_ordem_id');
+        return $this->belongsTo(status_ordem::class, 'status_ordem_id','id');
+      //  return $this->hasMany(\App\Models\status_ordem::class, 'id', 'status_ordem_id');
     }
     public function  getproduct($id){
 
