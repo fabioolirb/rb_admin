@@ -4,8 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProdutoIdEstoque extends Migration
+class CreateMatrizTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,11 +14,16 @@ class AddProdutoIdEstoque extends Migration
      */
     public function up()
     {
-        Schema::table('estoque', function (Blueprint $table) {
+        Schema::create('matriz', function (Blueprint $table) {
+            $table->integer('id')->increment();
+            $table->string('linha');
+            $table->string('coluna');
             $table->integer('produto_id');
+            $table->integer('quantidade');
+            $table->timestamps();
+            $table->softDeletes();
             $table->foreign('produto_id')->references('id')->on('produtos');
         });
-
     }
 
     /**
@@ -27,8 +33,6 @@ class AddProdutoIdEstoque extends Migration
      */
     public function down()
     {
-        Schema::table('estoque', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('matriz');
     }
 }

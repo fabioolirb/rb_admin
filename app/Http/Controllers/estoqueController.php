@@ -143,7 +143,9 @@ class estoqueController extends AppBaseController
             return redirect(route('estoques.index'));
         }
 
-        $estoque = $this->estoqueRepository->update($request->all(), $id);
+        $input = $request->all();
+        $input['data_producao'] = Carbon::createFromFormat('d/m/Y', $input['data_producao'])->format('Y-m-d');
+        $estoque = $this->estoqueRepository->update($input, $id);
 
         Flash::success(__('messages.updated', ['model' => __('models/estoques.singular')]));
 

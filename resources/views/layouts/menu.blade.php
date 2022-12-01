@@ -344,3 +344,17 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
         </ul>
     </li>
     @endcan
+<li class="nav-item">
+    <a href="{{ route('matrizs.index') }}"
+       class="nav-link {{ Request::is('matrizs*') ? 'active' : '' }}">
+        <p>@lang('models/matrizs.plural')</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="{{ route('celulas.index') }}"
+       class="nav-link {{ Request::is('celulas*') ? 'active' : '' }}">
+        <p>@lang('models/celulas.plural')</p>
+    </a>
+</li>
+

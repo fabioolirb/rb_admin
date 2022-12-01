@@ -22,3 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //Route::resource('estoques', App\Http\Controllers\API\estoqueAPIController::class);
+
+
+Route::resource('matrizs', App\Http\Controllers\API\matrizAPIController::class);
+
+
+Route::resource('celulas', App\Http\Controllers\API\celulaAPIController::class);

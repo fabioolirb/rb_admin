@@ -83,3 +83,9 @@ Route::resource('statusMontagems', App\Http\Controllers\status_montagemControlle
 
 
 Route::resource('montagems', App\Http\Controllers\montagemController::class);
+
+
+Route::resource('matrizs', App\Http\Controllers\matrizController::class);
+
+
+Route::resource('celulas', App\Http\Controllers\celulaController::class);

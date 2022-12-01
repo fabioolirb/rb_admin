@@ -2,12 +2,12 @@
 
 namespace App\DataTables;
 
-use App\Models\estoque;
+use App\Models\matriz;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Column;
 
-class estoqueDataTable extends DataTable
+class matrizDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -19,16 +19,16 @@ class estoqueDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'estoques.datatables_actions');
+        return $dataTable->addColumn('action', 'matrizs.datatables_actions');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\estoque $model
+     * @param \App\Models\matriz $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(estoque $model)
+    public function query(matriz $model)
     {
         return $model->newQuery();
     }
@@ -89,10 +89,10 @@ class estoqueDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' => new Column(['title' => __('models/estoques.fields.id'), 'data' => 'id','searchable' => false]),
-            'qtd_estoque' => new Column(['title' => __('models/estoques.fields.qtd_estoque'), 'data' => 'qtd_estoque','searchable' => false]),
-            'ordem_id' => new Column(['title' => __('models/estoques.fields.ordem_id'), 'data' => 'ordem_id','searchable' => true]),
-            'data_producao' => new Column(['title' => __('models/estoques.fields.data_producao'), 'data' => 'data_producao','searchable' => false])
+            'linha' => new Column(['title' => __('models/matrizs.fields.linha'), 'data' => 'linha']),
+            'coluna' => new Column(['title' => __('models/matrizs.fields.coluna'), 'data' => 'coluna']),
+            'produto_id' => new Column(['title' => __('models/matrizs.fields.produto_id'), 'data' => 'produto_id']),
+            'quantidade' => new Column(['title' => __('models/matrizs.fields.quantidade'), 'data' => 'quantidade'])
         ];
     }
 
@@ -103,6 +103,6 @@ class estoqueDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'estoques_datatable_' . time();
+        return 'matrizs_datatable_' . time();
     }
 }
