@@ -12,7 +12,7 @@
 
 <!-- Produto Id Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('maquina_id', __('models/maquinas.fields.nome').':') !!}
+    {!! Form::label('maquina_id', __('models/celulas.fields.nome_maquina').':') !!}
     {!! Form::select('maquina_id[]', $maquina,null, ['class' => 'select2 form-control select2-purple','multiple'=>'multiple']) !!}
 </div>
 
