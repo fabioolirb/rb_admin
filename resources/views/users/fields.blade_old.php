@@ -17,13 +17,13 @@
         {!! Form::select('role_data[]', $roles,null, ['class' => 'select2 form-control select2-purple','multiple'=>'multiple']) !!}
     </div>
 </div>
-
+ @if(!isset($user))
 <!-- Password Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('password', 'Password:',['class' => 'required']) !!}
     {!! Form::password('password', ['class' => 'form-control']) !!}
 </div>
-
+@endif
 @push('page_scripts')
 <script>
     $(document).ready(function() {

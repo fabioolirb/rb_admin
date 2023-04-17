@@ -4,6 +4,7 @@ hold-transition login-page
 @endpush
 
 @section('content')
+
 <div class="login-box">
     <div>
         <h2 style="text-align: center !important;"><a href="{{ route('home') }}"><b>{{ config('app.name') }}</b></a></h2>

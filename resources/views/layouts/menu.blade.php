@@ -119,14 +119,16 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
         $isMontadore =  Request::is($urlAdmin.'*montadoras*');
         $isEstoque = Request::is($urlAdmin.'*estoques*');
         $isMontagemsActive = Request::is($urlAdmin.'*montagems*');
+        $isMatrizActive = Request::is($urlAdmin.'*matrizs*');
+        $isCelulaActive = Request::is($urlAdmin.'*celulas*');
 
         //  $isOperadorActive =  Request::is($urlAdmin.'*cor*');
       //  $isOperadorActive =  Request::is($urlAdmin.'*cor*');
 
     @endphp
-@canany(['ordems.index','producaos.index','Estoque.index'])
+@canany(['ordems.index','producaos.index','Estoque.index','celulas.index','celulas.index'])
 
-    <li class="nav-item {{($isOredems||$isProducaes||$isEstoque)?'menu-open':''}} ">
+    <li class="nav-item {{($isOredems||$isProducaes||$isEstoque||$isCelulaActive)?'menu-open':''}} ">
         <a href="#" class="nav-link">
             <i class="fa fa-ethernet nav-icon"></i>
             <p>
@@ -156,6 +158,14 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                    class="nav-link {{ Request::is('*estoques*') ? 'active' : '' }}">
                     <i class="far fa-dot-circle nav-icon"></i>
                     <p>@lang('models/estoques.plural')</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('celulas.index') }}"
+                   class="nav-link {{ Request::is('*celulas*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/celulas.plural')</p>
                 </a>
             </li>
         </ul>
@@ -344,17 +354,26 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
         </ul>
     </li>
     @endcan
-<li class="nav-item">
-    <a href="{{ route('matrizs.index') }}"
-       class="nav-link {{ Request::is('matrizs*') ? 'active' : '' }}">
-        <p>@lang('models/matrizs.plural')</p>
-    </a>
-</li>
+    @canany(['matrizs.index'])
 
-<li class="nav-item">
-    <a href="{{ route('celulas.index') }}"
-       class="nav-link {{ Request::is('celulas*') ? 'active' : '' }}">
-        <p>@lang('models/celulas.plural')</p>
-    </a>
-</li>
+        <li class="nav-item {{($isMatrizActive)?'menu-open':''}} ">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-calendar-alt"></i>
+                <p>Usinagem
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                 @canany(['matrizs.index'])
+                <li class="nav-item {{($isMatrizActive)?'menu-open':''}}">
+                    <a href="{{ route('matrizs.index') }}"
+                       class="nav-link {{ Request::is('matrizs*') ? 'active' : '' }}">
+                        <i class="far fa-dot-circle nav-icon"></i>
+                        <p>@lang('models/matrizs.plural')</p>
+                    </a>
+                </li>
+                 @endcan
 
+            </ul>
+        </li>
+    @endcan
