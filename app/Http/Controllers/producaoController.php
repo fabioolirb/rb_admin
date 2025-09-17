@@ -22,6 +22,7 @@ use App\Models\imagem_produto;
 use App\Models\vwproducao;
 use App\Models\ordem;
 use Flash;
+use App\Models\vwordemcor;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Database\Eloquent\Model;
 use Nette\Utils\DateTime;
@@ -47,7 +48,7 @@ class producaoController extends AppBaseController
     private $ordemRepository;
 
 
-    public function __construct(ordem $ordermRepo ,producaoRepository $producaoRepo , turnoRepository $turnoRepo , imagem_produtoRepository $imagem_produtoRepo, maquinaRepository $maquinaRepo, operadorRepository $operadorRepo,  corRepository $corRepo, categoriaRepository $categoriaRepo)
+    public function __construct(ordem $ordermRepo ,producaoRepository $producaoRepo , turnoRepository $turnoRepo , imagem_produtoRepository $imagem_produtoRepo, maquinaRepository $maquinaRepo, operadorRepository $operadorRepo,  corRepository $corRepo, categoriaRepository $categoriaRepo )
     {
         $this->producaoRepository = $producaoRepo;
         $this->turnoRepository = $turnoRepo ;
@@ -310,26 +311,86 @@ class producaoController extends AppBaseController
 
     }
 
-    public function teste(Request $request,imagem_produto $imagem_produto){
+    public function teste(Request $request,imagem_produto $imagem_produto, vwordemcor $vwordemcor ){
 
-        $id_cor = $request['data_cor'];
-        $id_cor =[8,9,6,5];
+        $in_cor_maqina_array = array();
+        $in_order = array();
 
-        if(!empty($id_cor)){
+        $core_maquina = $vwordemcor->maquina(0);
 
-            $produtos_cores = $imagem_produto->produto_cor($id_cor)->toArray();
-
-            $userData['data'] = $produtos_cores;
-            $imagem_cor =array();
-            foreach ($produtos_cores as $key=>$produtos_cor){
-
-                $imagem_cor[$produtos_cor->imagem_id][$produtos_cor->cor_id]=$produtos_cor;
-            }
-
-            echo json_encode($userData);
-
+        foreach ($core_maquina as $value_cor_maquina){
+            $in_cor_maqina_array[$value_cor_maquina['maquina_id']][$value_cor_maquina['id_cor']] = [
+                                                                                                    'id_cor' => $value_cor_maquina['id_cor'],
+                                                                                                    'cor' => $value_cor_maquina['cor'],
+                                                                                                    'referencia' => $value_cor_maquina['referencia']
+                                                                                                   ];
+            ksort( $in_cor_maqina_array[$value_cor_maquina['maquina_id']]);
         }
 
+        $ordem = $vwordemcor->ordem(3240);
+        //dd($ordem->toArray());
+
+        foreach ($ordem as $value_ordem){
+            //dd($value_ordem->toArray());
+            $rs_order_cor[$value_ordem['imagem_produtos_id']][$value_ordem->id_cor]= ['cor'=>$value_ordem->cor,'referencia'=>$value_ordem->referencia];
+            $rs_order_imagem_id[$value_ordem['imagem_produtos_id']] = $value_ordem->toArray();
+
+            $in_order[$value_ordem['imagem_produtos_id']][$value_ordem['id_cor']] = $value_ordem['id_cor'];
+         // ksort($rs_order_imagem_id );
+        }
+
+
+       foreach ($in_cor_maqina_array as $key_maquina => $value_in_cor_maquina) {
+           foreach ($in_order as $key_ordem => $value_order ){
+               if(!empty($this->verificarProducao($value_order,$value_in_cor_maquina))){
+                   $rs_order_imagem_id[$key_ordem]['producao_in'][$key_maquina] = true ;
+               }elseif (empty($rs_order_imagem_id[$key_ordem]['producao_in'])) {
+                   $rs_order_imagem_id[$key_ordem]['producao_in'] = false;
+               }
+           }
+       }
+
+
+       ksort($in_cor_maqina_array);
+       ksort($rs_order_imagem_id);
+       ksort($rs_order_cor);
+
+
+        $data['maquinas']= $in_cor_maqina_array;
+        $data['order']= $rs_order_imagem_id;
+        $data['cor_imagem']= $rs_order_cor;
+
+        return Response::json($data );
+
+//        $id_cor = $request['data_cor'];
+  //      $id_cor =[8,9,6,5];
+
+    //    if(!empty($id_cor)){
+
+      //      $produtos_cores = $imagem_produto->produto_cor($id_cor)->toArray();
+
+        //    $userData['data'] = $produtos_cores;
+         //   $imagem_cor =array();
+         //   foreach ($produtos_cores as $key=>$produtos_cor){
+
+         //       $imagem_cor[$produtos_cor->imagem_id][$produtos_cor->cor_id]=$produtos_cor;
+         //   }
+
+          //  echo json_encode($userData);
+
+       // }
+
     }
+
+    function verificarProducao($peca, $coresDisponiveis) {
+        foreach ($peca as $cor) {
+
+            if (!array_key_exists($cor, $coresDisponiveis)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 }

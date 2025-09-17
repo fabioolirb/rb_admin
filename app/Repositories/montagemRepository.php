@@ -47,4 +47,10 @@ class montagemRepository extends BaseRepository
         return $query->get();
     }
 
+    public function getTotalMontadores($order){
+        $query = DB::table('vw_tolal_montadores')->select('*')->orderBy($order);
+
+        return $query->get();
+    }
+
 }

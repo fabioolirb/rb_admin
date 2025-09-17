@@ -89,6 +89,7 @@ class produtoDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'opencart_product_id' => new Column(['title' => __('ID OpenCart'), 'data' => 'opencart_product_id']),
             'nome' => new Column(['title' => __('models/produtos.fields.nome'), 'data' => 'nome']),
             'referencia' => new Column(['title' => __('models/produtos.fields.referencia'), 'data' => 'referencia']),
             'prazo_producao' => new Column(['title' => __('models/produtos.fields.prazo_producao'), 'data' => 'prazo_producao']),

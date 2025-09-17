@@ -279,6 +279,21 @@
             });
         });
 
+
+       $.ajax({
+           method: "POST",
+           url: "cadastrar.php",
+           data: { nome: "Pedro", email: "pedro@email.com" }
+       })
+
+
+        function estategia(id_produto){
+
+            alert('oiii!');
+        }
+
+
+
         {{--$('#submit').click(function(){--}}
         {{--    alert('submit');--}}
         {{--    $.ajax({--}}

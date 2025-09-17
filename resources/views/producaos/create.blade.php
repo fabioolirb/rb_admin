@@ -17,6 +17,7 @@
 
         <div class="card card-header">
 
+
             {!! Form::open(['route' => 'producaos.store','name'=>'formOrdem','class'=>'needs-validation']) !!}
 
             <div class="card-body">

@@ -2,6 +2,7 @@
 
         <div class="container-fluid">
             <div class="row bg-light">
+
                 <div class="col-sm-8">
                         {!! Form::label('id', __('models/producaos.fields.id').':') !!}
                         {{ $ordem->ordem_id}}

@@ -33,6 +33,7 @@ class produto extends Model
 
 
     public $fillable = [
+        'opencart_product_id',
         'nome',
         'referencia',
         'prazo_producao',
@@ -54,6 +55,7 @@ class produto extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'opencart_product_id' => 'integer',
         'nome' => 'string',
         'referencia' => 'string',
         'prazo_producao' => 'integer',

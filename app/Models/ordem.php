@@ -83,5 +83,4 @@ class ordem extends Model
             ->where('ordems.id','=',$id)->get();
     }
 
-
 }

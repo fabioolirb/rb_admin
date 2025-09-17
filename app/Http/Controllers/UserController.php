@@ -128,7 +128,12 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        $user = $this->userRepository->update($request->all(), $id);
+        $data = $request->all() ;
+       if(!empty($data['password']))
+             $data['password'] = Hash::make($data['password']);
+
+        $user = $this->userRepository->update($data, $id);
+
         $role_data = $request->get('role_data');
         $user->syncRoles($role_data);
         Flash::success('User updated successfully.');

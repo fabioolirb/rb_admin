@@ -42,6 +42,12 @@
             margin-bottom: .5rem;
             line-height: 1.8;
         }
+
+        .carousel-inner > .carousel-item > img {
+            width: 50px;
+            height: 50px; 
+        }
+
     </style>
     @stack('page_css')
 

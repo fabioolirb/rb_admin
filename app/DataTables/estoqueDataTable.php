@@ -91,7 +91,7 @@ class estoqueDataTable extends DataTable
         return [
             'id' => new Column(['title' => __('models/estoques.fields.id'), 'data' => 'id','searchable' => false]),
             'qtd_estoque' => new Column(['title' => __('models/estoques.fields.qtd_estoque'), 'data' => 'qtd_estoque','searchable' => false]),
-            'ordem_id' => new Column(['title' => __('models/estoques.fields.ordem_id'), 'data' => 'ordem_id','searchable' => false]),
+            'ordem_id' => new Column(['title' => __('models/estoques.fields.ordem_id'), 'data' => 'ordem_id','searchable' => true]),
             'data_producao' => new Column(['title' => __('models/estoques.fields.data_producao'), 'data' => 'data_producao','searchable' => false])
         ];
     }

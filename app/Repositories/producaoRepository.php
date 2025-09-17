@@ -50,11 +50,18 @@ class producaoRepository extends BaseRepository
         return $query->get();
     }
 
+
+    public function getProducao(){
+        $query = DB::table('vw_producao')->select('*')->orderBy('data_producao','desc');
+        return $query->get();
+
+    }
+
     public function getTotalProducaoSemana(){
         $query = DB::table('vw_toltal_producao_maquina')
-            ->select(DB::raw('sum(qtd_estoque) as qtd_estoque'),  DB::raw("WEEKDAY(data_producao) as semana_producao"),  DB::raw("WEEK(data_producao) as nr_semana_producao"))
-            ->groupBy(DB::raw('WEEKDAY(data_producao)'),DB::raw('WEEK(data_producao)'))
-             ->orderByDesc('nr_semana_producao','semana_producao');
+            ->select(DB::raw('sum(qtd_estoque) as qtd_estoque'),  DB::raw("WEEKDAY(data_producao) as semana_producao"),  DB::raw("WEEK(data_producao) as nr_semana_producao"),  DB::raw("data_producao"))
+            ->groupBy(DB::raw('WEEKDAY(data_producao)'),DB::raw('WEEK(data_producao)'),DB::raw('data_producao'))
+            ->orderByDesc('nr_semana_producao','semana_producao');
  //dd($query->toSql());
         return $query->get();
     }

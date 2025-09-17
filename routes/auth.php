@@ -83,3 +83,48 @@ Route::resource('statusMontagems', App\Http\Controllers\status_montagemControlle
 
 
 Route::resource('montagems', App\Http\Controllers\montagemController::class);
+
+
+Route::resource('matrizs', App\Http\Controllers\matrizController::class);
+
+
+Route::resource('celulas', App\Http\Controllers\celulaController::class);
+
+
+Route::resource('ilustradors', App\Http\Controllers\ilustradorController::class);
+
+
+Route::resource('tipoArquivos', App\Http\Controllers\tipo_arquivoController::class);
+
+
+Route::resource('arquivos', App\Http\Controllers\arquivoController::class);
+
+
+Route::resource('enderecoClientes', App\Http\Controllers\endereco_clienteController::class);
+
+
+Route::resource('clientes', App\Http\Controllers\clienteController::class);
+
+
+Route::resource('tipoArquivos', App\Http\Controllers\tipo_arquivoController::class);
+
+
+Route::resource('enderecoClientes', App\Http\Controllers\endereco_clienteController::class);
+
+
+Route::resource('prototipos', App\Http\Controllers\prototiposController::class);
+
+
+Route::resource('cncs', App\Http\Controllers\cncController::class);
+
+
+Route::resource('osUsinagems', App\Http\Controllers\os_usinagemController::class);
+
+
+Route::resource('osUsinagems', App\Http\Controllers\os_usinagemController::class);
+
+
+Route::resource('iaProducaos', App\Http\Controllers\ia_producaoController::class);
+
+
+Route::resource('arquivoProdutos', App\Http\Controllers\arquivo_produtoController::class);

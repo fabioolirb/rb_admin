@@ -10,6 +10,7 @@ use App\Repositories\ordemRepository;
 use App\Repositories\status_ordemRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use App\Models\vwordemmaquina;
 use Response;
 use Helper;
 
@@ -83,7 +84,7 @@ class ordemController extends AppBaseController
             return redirect(route('ordems.index'));
         }
 
-        return view('ordems.show')->with('ordem', $ordem);
+        return view('ordems.show')->with('ordem', $ordem)->with('status', $status);
     }
 
     /**
@@ -160,4 +161,40 @@ class ordemController extends AppBaseController
 
         return redirect(route('ordems.index'));
     }
+
+
+    /**
+     * Remove the specified ordem from storage.
+     *
+     * @param
+     *
+     * @return Response
+     */
+
+    public function maquina(vwordemmaquina  $rs_vwordemmaquina)
+    {
+
+        $ordem_maquina = $rs_vwordemmaquina->maquina();
+
+        foreach ($ordem_maquina as $rs_ordem => $value_ordem){
+           // dd( $value_ordem->toArray());
+            //$ordem['maquinas'][$value_ordem->nome][$value_ordem->nome_imagem] = $value_ordem->toArray();
+            $ordem['maquinas'][$value_ordem->nome_maquinas][$value_ordem->nome_imagem]['maquina_id'] = $value_ordem->maquina_id;
+            $ordem['maquinas'][$value_ordem->nome_maquinas][$value_ordem->nome_imagem]['ordem_id'] = $value_ordem->ordem_id;
+            $ordem['maquinas'][$value_ordem->nome_maquinas][$value_ordem->nome_imagem]['imagem'] = $value_ordem->nome_imagem;
+            $ordem['maquinas'][$value_ordem->nome_maquinas][$value_ordem->nome_imagem]['cor'][$value_ordem->cor] = $value_ordem->cor;
+            $ordem['maquinas'][$value_ordem->nome_maquinas][$value_ordem->nome_imagem]['quantity'] = $value_ordem->quantity; // Assuming 'quantity' exists in $value_ordem
+            $ordem['maquinas'][$value_ordem->nome_maquinas][$value_ordem->nome_imagem]['link'] =   $value_ordem->link;
+            $ordem['maquinas_cor'][$value_ordem->nome_maquinas][$value_ordem->cor] = $value_ordem->cor;
+           // dd($ordem);
+        }
+
+        if (empty($ordem['maquinas'])) {
+            Flash::warning(__('messages.no_machines_found'));
+        }
+
+        return view('ordems.maquina')->with(['maquinas' => $ordem['maquinas'], 'maquinas_cor' => $ordem['maquinas_cor']]);
+        //return redirect(route('ordems.maquinas'));
+    }
+
 }

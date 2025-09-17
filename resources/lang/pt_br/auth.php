@@ -17,7 +17,13 @@ return [
     'throttle' => 'Muitas tentativas de login. Por favor, tente novamente em: segundos segundos. ',
     'login' => [
         'title' => 'Efetue seu Loguin',
+        'msg' => [
+            'form' => 'Insira suas credenciais abaixo',
+            'formnew' => 'Insira seus dados',
+        ],
         'field' => [
+            'user' => "Usuário",
+            'pass' => "Senha",
             'email' => 'E-mail',
             'password' => 'Senha',
             'remember' => 'Lembrar mais tarde'

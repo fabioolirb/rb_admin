@@ -24,6 +24,7 @@
         "laravel/ui": "^3.4",
         "laravelcollective/html": "^6.2",
         "monolog/monolog": "^2.6",
+        "munafio/chatify": "^1.6",
         "spatie/laravel-activitylog": "^4.5",
         "spatie/laravel-permission": "^4.2",
         "yajra/laravel-datatables": "^1.5",
@@ -45,7 +46,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "treeware/plant": true
+        }
     },
     "extra": {
         "laravel": {

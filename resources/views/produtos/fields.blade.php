@@ -1,3 +1,9 @@
+<!-- Opencart Product Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('opencart_product_id', 'ID OpenCart:') !!}
+    {!! Form::number('opencart_product_id', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Nome Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('nome', __('models/produtos.fields.nome').':') !!}

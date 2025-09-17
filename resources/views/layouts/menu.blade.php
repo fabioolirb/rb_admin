@@ -89,7 +89,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
     </ul>
 </li>
 @endcan
-<!--
+{{--
 @can('fileUploads.index')
 <li class="nav-item">
     <a href="{{ route('fileUploads.index') }}" class="nav-link {{ Request::is('fileUploads*') ? 'active' : '' }}">
@@ -98,7 +98,7 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
     </a>
 </li>
 @endcan
--->
+--}}
 
     @php
 
@@ -114,19 +114,32 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
         $isStatusOrdemsActive = Request::is($urlAdmin.'*statusOrdem*');
         $isStatusMontadoraActive= Request::is($urlAdmin.'*statusMontadoras*');
         $isStatusMontagemActive= Request::is($urlAdmin.'*statusMontagems*');
-        $isOredems = Request::is($urlAdmin.'*ordems*');
+        $isOredems = Request::is($urlAdmin.'*ordems');
+        $isOredemsMaquina = Request::is($urlAdmin.'*maquina');
         $isProducaes = Request::is($urlAdmin.'*producaos*');
         $isMontadore =  Request::is($urlAdmin.'*montadoras*');
         $isEstoque = Request::is($urlAdmin.'*estoques*');
         $isMontagemsActive = Request::is($urlAdmin.'*montagems*');
+        $isMatrizActive = Request::is($urlAdmin.'*matrizs*');
+        $isCelulaActive = Request::is($urlAdmin.'*celulas*');
+        $istipoArquivosActive = Request::is($urlAdmin.'*tipoArquivos*');
+        $isenderecoClientesActive = Request::is($urlAdmin.'*enderecoClientes*');
+        $isClientesActive = Request::is($urlAdmin.'*clientes*');
+        $isArquivosActive = Request::is($urlAdmin.'*Arquivos*');
+        $isMatrizsActive = Request::is($urlAdmin.'*matrizs*');
+        $isPrototiposActive = Request::is($urlAdmin.'*prototipos*');
+        $isIlustradorsActive = Request::is($urlAdmin.'*ilustradors*');
+        $isiaPracaoActive = Request::is($urlAdmin.'*iaProducaos*');
+        $isArquivoProdutosActive = Request::is($urlAdmin.'*arquivoProdutos*');
+
 
         //  $isOperadorActive =  Request::is($urlAdmin.'*cor*');
       //  $isOperadorActive =  Request::is($urlAdmin.'*cor*');
 
     @endphp
-@canany(['ordems.index','producaos.index','Estoque.index'])
+@canany(['ordems.index','producaos.index','Estoque.index','celulas.index','celulas.index','enderecoClientes.index','clientes.index','iaProducaos.index','ordems.maquina'])
 
-    <li class="nav-item {{($isOredems||$isProducaes||$isEstoque)?'menu-open':''}} ">
+    <li class="nav-item {{($isOredems||$isProducaes||$isEstoque||$isCelulaActive||$isenderecoClientesActive||$isClientesActive||$isiaPracaoActive||$isOredemsMaquina)?'menu-open':''}} ">
         <a href="#" class="nav-link">
             <i class="fa fa-ethernet nav-icon"></i>
             <p>
@@ -144,10 +157,26 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
             </li>
 
             <li class="nav-item">
+                <a href="{{ route('ordems.maquina') }}"
+                   class="nav-link {{  Request::is('*maquina*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/ordems.maquina')</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a href="{{ route('producaos.index') }}"
                    class="nav-link {{  Request::is('*producaos*') ? 'active' : '' }}">
                     <i class="far fa-dot-circle nav-icon"></i>
                     <p>@lang('models/producaos.plural')</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('iaProducaos.index') }}"
+                   class="nav-link {{ Request::is('iaProducaos*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/iaProducaos.plural')</p>
                 </a>
             </li>
 
@@ -158,12 +187,36 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                     <p>@lang('models/estoques.plural')</p>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{ route('celulas.index') }}"
+                   class="nav-link {{ Request::is('*celulas*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/celulas.plural')</p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('enderecoClientes.index') }}"
+                   class="nav-link {{ Request::is('*enderecoClientes*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/enderecoClientes.plural')</p>
+                </a>
+            </li>
+
+            <li class="nav-item">s
+                <a href="{{ route('clientes.index') }}"
+                   class="nav-link {{ Request::is('*clientes*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/clientes.plural')</p>
+                </a>
+            </li>
         </ul>
     </li>
 @endcan
 
-@canany(['estados.index','cidades.index','cors.index','operadors.index','maquinas.index','turnos.index','statusOrdems.index'])
-    <li class="nav-item {{($isStatusOrdemsActive|| $isEstadoActive||$isCidadeActive||$isCorActive||$isMaquinaActive||$isTurnoActive||$isOperadorActive)?'menu-open':''}} ">
+@canany(['estados.index','cidades.index','cors.index','operadors.index','maquinas.index','turnos.index','statusOrdems.index','arquivos.index','tipoArquivos.index'])
+    <li class="nav-item {{($isStatusOrdemsActive|| $isEstadoActive||$isCidadeActive||$isCorActive||$isMaquinaActive||$isTurnoActive||$isOperadorActive||$istipoArquivosActive||$isArquivosActive)?'menu-open':''}} ">
         <a href="#" class="nav-link">
             <i class="fa fa-gears nav-icon"></i>
             <p>
@@ -243,16 +296,33 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                             <p>@lang('models/statusOrdems.plural')</p>
                         </a>
                     </li>
-
-                        @endcan
+                    @endcan
+                    @canany(['tipoArquivos.index'])
+                    <li class="nav-item">
+                        <a href="{{ route('tipoArquivos.index') }}"
+                           class="nav-link {{ Request::is('tipoArquivos*') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>@lang('models/tipoArquivos.plural')</p>
+                        </a>
+                    </li>
+                    @endcan
+                    @canany(['arquivos.index'])
+                    <li class="nav-item">
+                        <a href="{{ route('arquivos.index') }}"
+                           class="nav-link {{ Request::is('arquivos*') ? 'active' : '' }}">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>@lang('models/arquivos.plural')</p>
+                        </a>
+                    </li>
+                    @endcan
                 </ul>
             </li>
 
         </ul>
     </li>
     @endcan
-    @canany(['produtos.index','categorias.index','imagemProdutos.index'])
-    <li class="nav-item {{($isProdutoActive||$isCategoriaActive||$isImagemProdutosActive)?'menu-open':''}} ">
+    @canany(['produtos.index','categorias.index','imagemProdutos.index','arquivoProdutos.index'])
+    <li class="nav-item {{($isProdutoActive||$isCategoriaActive||$isImagemProdutosActive||$isArquivoProdutosActive)?'menu-open':''}} ">
         <a href="#" class="nav-link">
             <i class="nav-icon fas fa-box"></i>
             <p>
@@ -290,6 +360,17 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
                 </a>
             </li>
             @endcan
+            @canany(['arquivoProdutos.index'])
+            <li class="nav-item">
+                <a href="{{ route('arquivoProdutos.index') }}"
+                class="nav-link {{ Request::is('*arquivoProdutos*') ? 'active' : '' }}">
+                <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('models/arquivoProdutos.plural')</p>
+                </a>
+            </li>
+            @endcan
+            
+
         </ul>
     </li>
     @endcan
@@ -344,3 +425,93 @@ $isPermissionActive = Request::is($urlAdmin.'*permissions*');
         </ul>
     </li>
     @endcan
+
+    {{-- Menu de Relatórios --}}
+    <li class="nav-item {{ Request::is('*relatorios*') ? 'menu-open' : '' }}">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+                Relatórios
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('relatorios.producao') }}" class="nav-link {{ Request::is('*relatorios/producao*') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>Produção</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    @canany(['matrizs.index'])
+
+        <li class="nav-item {{($isMatrizActive||$isMatrizsActive||$isPrototiposActive||$isIlustradorsActive)?'menu-open':''}} ">
+            <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-calendar-alt"></i>
+                <p>Usinagem
+                    <i class="fas fa-angle-left right"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                 @canany(['matrizs.index'])
+                <li class="nav-item {{($isMatrizActive)?'menu-open':''}}">
+                    <a href="{{ route('matrizs.index') }}"
+                       class="nav-link {{ Request::is('*matrizs*') ? 'active' : '' }}">
+                        <i class="far fa-dot-circle nav-icon"></i>
+                        <p>@lang('models/matrizs.plural')</p>
+                    </a>
+                </li>
+                 @endcan
+
+                 <li class="nav-item">
+                     <a href="{{ route('prototipos.index') }}"
+                        class="nav-link {{ Request::is('*prototipos*') ? 'active' : '' }}">
+                         <i class="far fa-dot-circle nav-icon"></i>
+                         <p>@lang('models/prototipos.plural')</p>
+                     </a>
+                 </li>
+
+                 <li class="nav-item">
+                     <a href="{{ route('ilustradors.index') }}"
+                        class="nav-link {{ Request::is('*ilustradors*') ? 'active' : '' }}">
+                         <i class="far fa-dot-circle nav-icon"></i>
+                         <p>@lang('models/ilustradors.plural')</p>
+                     </a>
+                 </li>
+
+            </ul>
+        </li>
+    @endcanany
+    
+
+    {{-- OpenCart Integration Menu --}}
+    <li class="nav-item {{ Request::is('admin/opencart*') ? 'menu-open' : '' }}">
+        <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-plug"></i> {{-- Icon for integration --}}
+            <p>
+                @lang('opencart.fields.integration')
+                <i class="fas fa-angle-left right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('opencart.index') }}" class="nav-link {{ Request::is('admin/opencart') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('opencart.fields.order_details_menu')</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('opencart.update_status_form') }}" class="nav-link {{ Request::is('admin/opencart/update-status') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>@lang('opencart.fields.update_status_menu')</p>
+                </a>
+            </li>
+            {{-- Add more OpenCart services here as sub-menus --}}
+        </ul>
+    </li>
+
+
+
+

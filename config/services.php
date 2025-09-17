@@ -30,4 +30,11 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'opencard_ia' => [
+        'username' => env('OPENCARD_IA_USERNAME'),
+        'key' => env('OPENCARD_IA_KEY'),
+        'url' => env('OPENCARD_IA_URL'),
+        'timeout' => env('OPENCARD_IA_TIMEOUT', 30),
+    ],
+
 ];

@@ -1,0 +1,50 @@
+<?php
+
+return array (
+  'singular' => 'Detalhes do Pedido OpenCart',
+  'plural' => 'Detalhes dos Pedidos OpenCart',
+  'fields' =>
+
+  array (
+    'order_details' => 'Detalhes do Pedido OpenCart',
+    'order_id' => 'ID do Pedido:',
+    'get_order_details' => 'Obter Detalhes do Pedido',
+    'order_information' => 'Informações do Pedido',
+    'error_from_api' => 'Erro da API OpenCart:',
+    'customer_details' => 'Detalhes do Cliente',
+    'name' => 'Nome:',
+    'email' => 'Email:',
+    'telephone' => 'Telefone:',
+    'order_summary' => 'Resumo do Pedido',
+    'total' => 'Total:',
+    'date_added' => 'Data de Adição:',
+    'payment_method' => 'Método de Pagamento:',
+    'shipping_method' => 'Método de Envio:',
+    'shipping_address' => 'Endereço de Entrega',
+    'products' => 'Produtos',
+    'image' => 'Imagem',
+    'product_name' => 'Nome do Produto',
+    'model' => 'Modelo',
+    'quantity' => 'Quantidade',
+    'unit_price' => 'Preço Unitário',
+    'n_a' => 'N/A',
+    'order_totals' => 'Totais do Pedido',
+
+    'update_order_status' => 'Atualizar Status do Pedido OpenCart',
+    'order_status_id' => 'ID do Status do Pedido:',
+    'refer_status_docs' => 'Consulte a documentação do OpenCart para IDs de status válidos.',
+    'comment_optional' => 'Comentário (opcional):',
+    'notify_customer' => 'Notificar Cliente',
+    'override' => 'Sobrescrever',
+    'update_status' => 'Atualizar Status',
+
+    'integration' => 'Integração',
+    'order_details_menu' => 'Detalhes do Pedido',
+    'update_status_menu' => 'Atualizar Status do Pedido',
+
+    'api_connection_error' => 'Erro ao conectar com a API OpenCart:',
+    'unexpected_error' => 'Ocorreu um erro inesperado:',
+    'status_updated_success' => 'Status do pedido atualizado com sucesso!',
+    'unknown_status_update_error' => 'Erro desconhecido ao atualizar o status do pedido.',
+    ),
+);
